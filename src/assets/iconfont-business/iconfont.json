@@ -1,0 +1,30 @@
+{
+  "id": "3951079",
+  "name": "TD2.0",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "15989503",
+      "name": "头条样式",
+      "font_class": "toutiao",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "18166712",
+      "name": "快手",
+      "font_class": "kuaishou",
+      "unicode": "e8dc",
+      "unicode_decimal": 59612
+    },
+    {
+      "icon_id": "18166694",
+      "name": "抖音",
+      "font_class": "douyin",
+      "unicode": "e8db",
+      "unicode_decimal": 59611
+    }
+  ]
+}
