@@ -41,7 +41,7 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   if (timer.value !== null) {
     clearInterval(timer.value);
   }
-  endOfCountdown.value = true;
+  useSearchTab.setEndOfCountdown(true);
   countDown.value = 0;
 };
 // 过滤的值数组
@@ -87,16 +87,15 @@ const showFilterTime = computed(() => {
 // 倒计时
 const countDown = ref(60);
 const timer = ref(null);
-// 倒计时是否结束
-const endOfCountdown = ref(false);
 // 倒计时开始
 const timeDownFn = () => {
   countDown.value = 60;
+  useSearchTab.setEndOfCountdown(false);
   timer.value = setInterval(() => {
     countDown.value--;
     if (countDown.value <= 0) {
       clearInterval(timer.value);
-      endOfCountdown.value = true;
+      useSearchTab.setEndOfCountdown(true);
     }
   }, 1000);
 };
@@ -123,11 +122,29 @@ onUnmounted(() => {
           </div>
         </template>
         <!-- input 搜索框 -->
-        <el-input v-model="inputValue" clearable placeholder="请输入关键词搜索">
+        <el-input
+          v-model="inputValue"
+          @keyup.enter="search"
+          clearable
+          placeholder="请输入关键词搜索"
+        >
           <template #suffix>
-            <div class="ipt_suf" v-if="showFilterTime && !endOfCountdown">
-              <span v-loading="countDown !== 0" />正在搜索... {{ countDown }}s
+            <div
+              class="ipt_suf"
+              v-if="showFilterTime && !useSearchTab.endOfCountdown"
+            >
+              <span
+                v-if="countDown !== 0"
+                style="vertical-align: text-bottom"
+                class="loader"
+              />
+              正在搜索... {{ countDown }}s
             </div>
+            <font-icon
+              v-else-if="showFilterTime && useSearchTab.endOfCountdown"
+              style="color: #1ddb0d"
+              icon="icon-duigou"
+            />
           </template>
           <template #append>
             <div @click="search">
@@ -165,32 +182,40 @@ onUnmounted(() => {
 .search_tabs {
   display: flex;
   justify-content: space-between;
+
   .demo-tabs {
     margin-top: 50px;
+
     .filter_time {
       padding-top: 20px;
+
       ::v-deep(.el-checkbox__label) {
         color: #ffffff;
       }
+
       .el-checkbox {
         margin-left: 15px;
       }
     }
+
     .time {
       width: 43px;
       height: 24px;
       margin-left: 15px;
       padding: 2px;
       cursor: pointer;
+
       &.active {
         background: #1890ff;
         border-radius: 5px;
       }
     }
   }
+
   .right_state {
     margin: 17px 40px 0 0;
     display: flex;
+
     div {
       box-sizing: border-box;
       width: 11px;
@@ -198,19 +223,24 @@ onUnmounted(() => {
       border-radius: 50%;
       margin-left: 3px;
     }
+
     .dy_state {
       border: 2px solid #1ddb0d;
     }
+
     .tt_state {
       border: 2px solid #dbae0d;
     }
+
     .ks_state {
       border: 2px solid #bfbfbf;
     }
   }
 }
+
 ::v-deep(.el-tabs__header) {
   margin: 0 0 5px;
+
   .el-tabs__item {
     height: 28px;
     font-size: 14px;
@@ -219,27 +249,33 @@ onUnmounted(() => {
     padding: 0 15px;
   }
 }
+
 ::v-deep(.el-tabs__active-bar) {
   width: 58px;
   height: 2px;
   background: #fa8c16;
 }
+
 ::v-deep(.el-tabs__nav-wrap::after) {
   background-color: transparent;
 }
+
 .is_active_tabs {
   color: #fa8c16;
 }
+
 .el-input {
   width: 721px;
   height: 52px;
 }
+
 ::v-deep(.el-input-group__append) {
   background: #fa8c16;
   color: #ffffff;
   padding: 0;
   width: 95px;
   height: 100%;
+
   div {
     display: flex;
     align-items: center;
@@ -249,12 +285,15 @@ onUnmounted(() => {
     cursor: pointer;
   }
 }
+
 .ipt_suf {
   height: 50px;
   line-height: 50px;
+
   ::v-deep(.el-loading-parent--relative) {
     margin-right: 20px;
   }
+
   ::v-deep(.circular) {
     margin-right: 10px;
     width: 20px;

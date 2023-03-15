@@ -24,9 +24,9 @@ import "./assets/iconfont/iconfont.js";
 import "./assets/iconfont/iconfont.css";
 import "./assets/iconfont-business/iconfont.js";
 import "./assets/iconfont-business/iconfont.css";
-
 const app = createApp(App);
 
+import "animate.css";
 // 自定义指令
 import * as directives from "@/directives";
 Object.keys(directives).forEach(key => {

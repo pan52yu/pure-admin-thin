@@ -17,10 +17,25 @@ export default {
     {
       path: "/networkSearch/results",
       name: "NetworkSearchResults",
-      component: () =>
-        import("@/views/NetworkSearch/components/SearchResults.vue"),
+      component: () => import("@/views/NetworkSearch/SearchResults.vue"),
       meta: {
-        title: "全网速搜2"
+        title: "全网速搜 "
+      }
+    },
+    {
+      path: "/networkSearch/network",
+      name: "SearchNetwork",
+      component: () => import("@/views/NetworkSearch/SearchNetwork.vue"),
+      meta: {
+        title: "搜全网"
+      }
+    },
+    {
+      path: "/networkSearch/station",
+      name: "SearchStation",
+      component: () => import("@/views/NetworkSearch/SearchStation.vue"),
+      meta: {
+        title: "搜全站"
       }
     }
   ]
