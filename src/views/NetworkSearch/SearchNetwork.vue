@@ -52,13 +52,13 @@ const selectAll = false;
           <el-button>将勾选结果添加到任务...</el-button>
         </div>
       </div>
-      <el-row :gutter="20">
+      <el-row :gutter="30">
         <el-col :span="4" v-if="!useSearchTab.endOfCountdown">
           <el-skeleton animated>
             <template #template>
               <el-skeleton-item
                 variant="image"
-                style="width: 200px; height: 250px"
+                style="width: 100%; height: 380px"
               />
               <div>
                 <el-skeleton-item variant="p" style="width: 80%" />

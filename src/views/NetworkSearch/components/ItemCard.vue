@@ -18,11 +18,7 @@ defineProps({
     :class="{ animate__backInLeft: item.animation }"
   >
     <div class="card_img">
-      <el-image
-        style="width: 203px; height: 252px"
-        :src="item.url"
-        fit="fill"
-      />
+      <el-image :src="item.url" fit="fill" />
     </div>
     <p>
       <span>{{ item.title }}</span>
@@ -60,14 +56,18 @@ defineProps({
 
 <style lang="scss" scoped>
 .card_info {
-  width: 203px;
+  width: 100%;
   color: #8c8c8c;
   font-size: 14px;
   margin-bottom: 30px;
 
   .card_img {
-    width: 203px;
-    height: 252px;
+    width: 100%;
+
+    .el-image {
+      width: 100%;
+      height: 380px;
+    }
   }
 
   p {
@@ -95,6 +95,10 @@ defineProps({
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .iconfont {
+    color: #8c8c8c;
   }
 }
 </style>

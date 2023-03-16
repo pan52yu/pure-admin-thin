@@ -3,8 +3,17 @@ import ItemCard from "@/views/NetworkSearch/components/ItemCard.vue";
 import { ListType } from "@/types/data";
 import { useSearchTabs } from "@/store/modules/searchTabs";
 import RefreshRight from "@iconify-icons/ep/refresh-right";
+import Search from "@iconify-icons/ep/search";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
+import {
+  ELIMINATE_THE_HAZARD,
+  FILTER_INCOMING_TIME,
+  FILTER_PUB_TIME_LIST,
+  SORT_LIST,
+  SOURCE_PLATFORM,
+  STATUS_OPTIONS
+} from "@/utils/enum";
 defineOptions({
   name: "SearchStation"
 });
@@ -44,25 +53,23 @@ const stationFrom = ref({
   accountNumber: "",
   videoId: "",
   status: "1",
+  // 过滤同城
   filterCity: true,
-  checkedCities: ["同城1"] // 选中的同城属地
+  // 选中的同城属地
+  checkedCities: ["同城1"],
+  // 过滤发布时间
+  filterPub: "1",
+  // 过滤入库时间
+  filterIncoming: "1",
+  // 来源平台
+  platform: "1",
+  // 排除危害
+  harm: "1",
+  // 选中的规则,
+  checkedRule: ["规则1"]
 });
 // 认证选项
-const statusOptions = [
-  {
-    label: "全部",
-    value: "1"
-  },
-  {
-    label: "已认证",
-    value: "2"
-  },
-  {
-    label: "未认证",
-    value: "3"
-  }
-];
-
+const statusOptions = STATUS_OPTIONS;
 // 全选全部同城属地
 const checkAll = ref(false);
 // 设置不确定状态，仅负责样式控制
@@ -70,6 +77,7 @@ const isIndeterminate = ref(true);
 // 同城属地列表
 const cities = ["同城1", "同城2"];
 
+// 是否全部属地同城
 const handleCheckAllChange = (val: boolean) => {
   stationFrom.value.checkedCities = val ? cities : [];
   isIndeterminate.value = false;
@@ -79,6 +87,36 @@ const handleCheckedCitiesChange = (value: string[]) => {
   checkAll.value = checkedCount === cities.length;
   isIndeterminate.value = checkedCount > 0 && checkedCount < cities.length;
 };
+
+// 过滤发布时间
+const filterPubTimeList = FILTER_PUB_TIME_LIST;
+// 过滤入库时间
+const filterIncomingTime = FILTER_INCOMING_TIME;
+// 来源平台
+const sourcePlatform = SOURCE_PLATFORM;
+// 排除危害 eliminateTheHazard
+const eliminateTheHazard = ELIMINATE_THE_HAZARD;
+
+// 全选规则
+const allRules = ref(false);
+// 规则列表
+const ruleList = ["规则1", "规则2"];
+// 设置不确定状态，仅负责样式控制
+const isIndeterminate2 = ref(true);
+const handleCheckAllChange2 = (val: boolean) => {
+  stationFrom.value.checkedRule = val ? ruleList : [];
+  isIndeterminate2.value = false;
+};
+const handleCheckedCitiesChange2 = (value: string[]) => {
+  const checkedCount = value.length;
+  allRules.value = checkedCount === ruleList.length;
+  isIndeterminate2.value = checkedCount > 0 && checkedCount < ruleList.length;
+};
+
+// 排序
+const sortList = SORT_LIST;
+// 当前排序规则
+const curSort = ref("1");
 </script>
 
 <template>
@@ -110,7 +148,7 @@ const handleCheckedCitiesChange = (value: string[]) => {
             v-model="stationFrom.status"
             class="m-2"
             placeholder="Select"
-            size="large"
+            size="default"
           >
             <el-option
               v-for="item in statusOptions"
@@ -144,6 +182,89 @@ const handleCheckedCitiesChange = (value: string[]) => {
           }}</el-checkbox>
         </el-checkbox-group>
       </div>
+      <div class="station_from_three">
+        <p>过滤发布时间</p>
+        <span
+          :class="{ active: stationFrom.filterPub === item.value }"
+          v-for="item in filterPubTimeList"
+          :key="item.value"
+          @click="stationFrom.filterPub = item.value"
+          >{{ item.label }}</span
+        >
+        <div>过滤入库时间</div>
+        <span
+          :class="{ active: stationFrom.filterIncoming === item.value }"
+          v-for="item in filterIncomingTime"
+          :key="item.value"
+          @click="stationFrom.filterIncoming = item.value"
+          >{{ item.label }}</span
+        >
+      </div>
+      <div class="station_from_four">
+        <div>
+          <span>来源平台</span>
+          <el-select
+            v-model="stationFrom.platform"
+            class="m-2"
+            placeholder="Select"
+            size="default"
+          >
+            <el-option
+              v-for="item in sourcePlatform"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </div>
+        <div>
+          <span>排除危害</span>
+          <el-select
+            v-model="stationFrom.harm"
+            class="m-2"
+            placeholder="Select"
+            size="default"
+          >
+            <el-option
+              v-for="item in eliminateTheHazard"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </div>
+        <div>
+          <el-checkbox
+            v-model="allRules"
+            :indeterminate="isIndeterminate2"
+            @change="handleCheckAllChange2"
+            >全部</el-checkbox
+          >
+          <el-checkbox-group
+            v-model="stationFrom.checkedRule"
+            @change="handleCheckedCitiesChange2"
+          >
+            <el-checkbox v-for="city in ruleList" :key="city" :label="city">{{
+              city
+            }}</el-checkbox>
+          </el-checkbox-group>
+        </div>
+      </div>
+      <el-divider />
+      <div class="station_from_search">
+        <el-button><IconifyIconOffline :icon="Search" />搜索</el-button>
+        <span>导出</span>
+      </div>
+      <div class="station_from_sort">
+        <p>排序:</p>
+        <span
+          :class="{ active: curSort === item.value }"
+          v-for="item in sortList"
+          :key="item.value"
+          @click="curSort = item.value"
+          >{{ item.label }}</span
+        >
+      </div>
     </div>
     <!--  内容区域  -->
     <div class="search_station">
@@ -166,13 +287,13 @@ const handleCheckedCitiesChange = (value: string[]) => {
           <el-button>将勾选结果添加到任务...</el-button>
         </div>
       </div>
-      <el-row :gutter="20">
+      <el-row :gutter="30">
         <el-col :span="4" v-if="!useSearchTab.endOfCountdown">
           <el-skeleton animated>
             <template #template>
               <el-skeleton-item
                 variant="image"
-                style="width: 200px; height: 250px"
+                style="width: 100%; height: 380px"
               />
               <div>
                 <el-skeleton-item variant="p" style="width: 80%" />
@@ -230,6 +351,7 @@ const handleCheckedCitiesChange = (value: string[]) => {
   &_first {
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
 
     div {
       width: 25%;
@@ -256,6 +378,79 @@ const handleCheckedCitiesChange = (value: string[]) => {
 
     .el-checkbox {
       margin: 0 15px;
+    }
+  }
+
+  &_three {
+    margin: 15px 0 8px 0;
+
+    span {
+      display: inline-block;
+      width: 43px;
+      height: 24px;
+      text-align: center;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .active {
+      color: #fff;
+      background: #1890ff;
+      border-radius: 5px;
+    }
+
+    div {
+      margin-left: 50px;
+    }
+  }
+
+  &_four {
+    div:first-child {
+      margin-right: 30px;
+    }
+
+    div:nth-child(2) {
+      margin-right: 10px;
+    }
+
+    .el-checkbox-group {
+      .el-checkbox {
+        margin: 0 0 0 15px;
+      }
+    }
+  }
+
+  .el-divider--horizontal {
+    margin: 15px 0;
+  }
+
+  &_search {
+    padding-left: 70px;
+
+    span {
+      font-size: 14px;
+      color: #595959;
+      cursor: pointer;
+      margin-left: 20px;
+    }
+  }
+
+  &_sort {
+    justify-content: right;
+
+    p {
+      font-size: 14px;
+      color: #595959;
+    }
+
+    span {
+      color: #1890ff;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .active {
+      color: #000;
     }
   }
 }

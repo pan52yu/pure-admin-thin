@@ -117,7 +117,7 @@ onUnmounted(() => {
       <el-tab-pane v-for="item in tabList" :key="item.name" :name="item.name">
         <template #label>
           <div :class="{ is_active_tabs: activeName === item.name }">
-            <FontIcon :icon="item.icon" />
+            <FontIcon style="color: #fa8c16" :icon="item.icon" />
             {{ item.label }}
           </div>
         </template>
