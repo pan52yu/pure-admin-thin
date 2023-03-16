@@ -65,7 +65,7 @@ const router = useRouter();
 // 搜索
 const search = () => {
   if (inputValue.value.trim() !== "") {
-    if (route.path === "/networkSearch") {
+    if (route.path === "/networkSearch/hot") {
       router.push({
         name: "NetworkSearchResults"
       });
@@ -82,7 +82,7 @@ const route = useRoute();
 
 // 是否显示搜索框下面的时间过滤选项
 const showFilterTime = computed(() => {
-  return route.path !== "/networkSearch";
+  return route.path !== "/networkSearch/hot";
 });
 // 倒计时
 const countDown = ref(60);

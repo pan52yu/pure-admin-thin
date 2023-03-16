@@ -1,15 +1,17 @@
 // 最简代码，也就是这些字段必须有
 export default {
   path: "/networkSearch",
+  component: () => import("@/views/NetworkSearch/index.vue"),
+  redirect: "/networkSearch/hot",
   meta: {
     title: "全网速搜",
     rank: 101
   },
   children: [
     {
-      path: "/networkSearch",
-      name: "NetworkSearch",
-      component: () => import("@/views/NetworkSearch/index.vue"),
+      path: "/networkSearch/hot",
+      name: "NetworkSearchHot",
+      component: () => import("@/views/NetworkSearch/SearchHot.vue"),
       meta: {
         title: "全网速搜"
       }
@@ -19,7 +21,8 @@ export default {
       name: "NetworkSearchResults",
       component: () => import("@/views/NetworkSearch/SearchResults.vue"),
       meta: {
-        title: "全网速搜 "
+        title: "全网速搜 ",
+        showLink: false
       }
     },
     {
@@ -27,7 +30,8 @@ export default {
       name: "SearchNetwork",
       component: () => import("@/views/NetworkSearch/SearchNetwork.vue"),
       meta: {
-        title: "搜全网"
+        title: "搜全网",
+        showLink: false
       }
     },
     {
@@ -35,7 +39,8 @@ export default {
       name: "SearchStation",
       component: () => import("@/views/NetworkSearch/SearchStation.vue"),
       meta: {
-        title: "搜全站"
+        title: "搜全站",
+        showLink: false
       }
     }
   ]

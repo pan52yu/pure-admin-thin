@@ -14,6 +14,7 @@ import {
   SOURCE_PLATFORM,
   STATUS_OPTIONS
 } from "@/utils/enum";
+import MyFavorites from "@/components/MyFavorites.vue";
 defineOptions({
   name: "SearchStation"
 });
@@ -48,7 +49,7 @@ const selectAll = computed({
 const router = useRouter();
 // 返回上一级
 const goBack = () => {
-  router.back();
+  router.push("/networkSearch/hot");
 };
 // 去搜索全网页面
 const goSearchNet = () => {
@@ -128,6 +129,7 @@ const curSort = ref("1");
 
 <template>
   <div>
+    <my-favorites />
     <!--  标题  -->
     <div class="station_title">
       搜全站已入库视频

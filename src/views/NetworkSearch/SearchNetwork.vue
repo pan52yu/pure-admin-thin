@@ -5,6 +5,8 @@ import { ListType } from "@/types/data";
 import { useSearchTabs } from "@/store/modules/searchTabs";
 import RefreshRight from "@iconify-icons/ep/refresh-right";
 import { computed, ref } from "vue";
+import MyFavorites from "@/components/MyFavorites.vue";
+import { useRouter } from "vue-router";
 
 defineOptions({
   name: "SearchNetwork"
@@ -37,9 +39,24 @@ const selectAll = computed({
     });
   }
 });
+const router = useRouter();
+// 返回上一级
+const goBack = () => {
+  router.push("/networkSearch/hot");
+};
+// 去搜索全站页面
+const goSearchNet = () => {
+  router.push("/networkSearch/station");
+};
 </script>
 <template>
   <div>
+    <my-favorites />
+    <div class="back">
+      <span @click="goBack">返回</span>
+      <i>|</i>
+      <span @click="goSearchNet">搜全站</span>
+    </div>
     <top-banner />
     <div class="search_network">
       <div class="top_loading">
@@ -85,6 +102,23 @@ const selectAll = computed({
   </div>
 </template>
 <style lang="scss" scoped>
+.back {
+  position: absolute;
+  left: 24px;
+  top: 14px;
+  font-size: 14px;
+  color: #fff;
+
+  span {
+    cursor: pointer;
+  }
+
+  i {
+    color: #fff;
+    margin: 0 10px;
+  }
+}
+
 .search_network {
   padding: 25px 30px 220px;
 

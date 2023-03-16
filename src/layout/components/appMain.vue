@@ -3,7 +3,6 @@ import { useGlobal } from "@pureadmin/utils";
 import backTop from "@/assets/svg/back_top.svg?component";
 import { h, computed, Transition, defineComponent } from "vue";
 import { usePermissionStoreHook } from "@/store/modules/permission";
-
 const props = defineProps({
   fixedHeader: Boolean
 });
@@ -128,7 +127,7 @@ const transitionMain = defineComponent({
   </section>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .app-main {
   width: 100%;
   height: 100vh;

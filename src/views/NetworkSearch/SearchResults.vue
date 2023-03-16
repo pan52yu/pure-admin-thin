@@ -4,6 +4,7 @@ import ResultCard from "@/views/NetworkSearch/components/ResultCard.vue";
 import { ListType } from "@/types/data";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
+import MyFavorites from "@/components/MyFavorites.vue";
 defineOptions({
   name: "SearchResults"
 });
@@ -38,6 +39,7 @@ onMounted(() => {});
 
 <template>
   <div>
+    <my-favorites />
     <top-banner />
     <div class="result_body">
       <div class="body_l">
