@@ -5,11 +5,12 @@ export default {
   path: "/",
   name: "Home",
   component: Layout,
-  redirect: "/welcome",
+  redirect: "/networkSearch",
   meta: {
     icon: "homeFilled",
     title: $t("menus.hshome"),
-    rank: 0
+    rank: 0,
+    showLink: false
   },
   children: [
     {

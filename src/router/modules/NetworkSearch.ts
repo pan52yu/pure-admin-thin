@@ -1,7 +1,7 @@
 // 最简代码，也就是这些字段必须有
 export default {
   path: "/networkSearch",
-  component: () => import("@/views/NetworkSearch/index.vue"),
+  name: "NetworkSearch",
   redirect: "/networkSearch/hot",
   meta: {
     title: "全网速搜",
@@ -10,15 +10,16 @@ export default {
   children: [
     {
       path: "/networkSearch/hot",
-      name: "NetworkSearchHot",
+      name: "SearchHot",
       component: () => import("@/views/NetworkSearch/SearchHot.vue"),
       meta: {
-        title: "全网速搜"
+        title: "全网速搜",
+        showParent: false
       }
     },
     {
       path: "/networkSearch/results",
-      name: "NetworkSearchResults",
+      name: "SearchResults",
       component: () => import("@/views/NetworkSearch/SearchResults.vue"),
       meta: {
         title: "全网速搜 ",

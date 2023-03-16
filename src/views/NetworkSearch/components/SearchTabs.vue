@@ -67,7 +67,7 @@ const search = () => {
   if (inputValue.value.trim() !== "") {
     if (route.path === "/networkSearch/hot") {
       router.push({
-        name: "NetworkSearchResults"
+        name: "SearchResults"
       });
       useSearchTab.setSearchLabs(inputValue.value);
     } else {
@@ -117,7 +117,7 @@ onUnmounted(() => {
       <el-tab-pane v-for="item in tabList" :key="item.name" :name="item.name">
         <template #label>
           <div :class="{ is_active_tabs: activeName === item.name }">
-            <FontIcon style="color: #fa8c16" :icon="item.icon" />
+            <FontIcon :icon="item.icon" />
             {{ item.label }}
           </div>
         </template>

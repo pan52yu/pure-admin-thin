@@ -164,4 +164,8 @@ const goSearchNet = () => {
     }
   }
 }
+
+i {
+  color: #1890ff;
+}
 </style>

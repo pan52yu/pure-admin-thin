@@ -510,4 +510,8 @@ const curSort = ref("1");
     }
   }
 }
+
+i {
+  color: #1890ff;
+}
 </style>

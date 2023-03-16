@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TopBanner from "./components/TopBanner.vue";
 defineOptions({
-  name: "NetworkSearch"
+  name: "SearchHot"
 });
 </script>
 
