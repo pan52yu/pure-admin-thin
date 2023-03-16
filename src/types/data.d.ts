@@ -11,4 +11,5 @@ export type ListType = {
   favoriteStatus: boolean;
   animation?: boolean;
   id?: number;
+  check?: boolean;
 };

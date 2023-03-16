@@ -8,6 +8,10 @@ defineOptions({
 defineProps({
   item: {
     type: Object as PropType<ListType>
+  },
+  hasCheck: {
+    type: Boolean,
+    default: false
   }
 });
 </script>
@@ -51,6 +55,10 @@ defineProps({
         <el-button v-else size="small" type="info" plain>已收藏</el-button>
       </div>
     </div>
+    <template v-if="hasCheck">
+      <!--  eslint-disable-next-line vue/no-mutating-props  -->
+      <el-checkbox v-model="item.check" />
+    </template>
   </div>
 </template>
 
@@ -99,6 +107,10 @@ defineProps({
 
   .iconfont {
     color: #8c8c8c;
+  }
+
+  .el-checkbox {
+    height: 20px;
   }
 }
 </style>

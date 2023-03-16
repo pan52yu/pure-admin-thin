@@ -5,7 +5,7 @@ import { useSearchTabs } from "@/store/modules/searchTabs";
 import RefreshRight from "@iconify-icons/ep/refresh-right";
 import Search from "@iconify-icons/ep/search";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import {
   ELIMINATE_THE_HAZARD,
   FILTER_INCOMING_TIME,
@@ -17,7 +17,7 @@ import {
 defineOptions({
   name: "SearchStation"
 });
-const netSearchList: ListType[] = [];
+const netSearchList = ref<ListType[]>([]);
 for (let i = 0; i < 30; i++) {
   const newItem: ListType = {
     url: `https://picsum.photos/id/${Math.floor(Math.random() * 100)}/200/200`,
@@ -30,14 +30,21 @@ for (let i = 0; i < 30; i++) {
     zhuanfa: Math.floor(Math.random() * 100),
     time: "2023-03-09 10:42:34",
     favoriteStatus: Math.random() >= 0.5,
-    id: Math.floor(Math.random() * 100)
+    id: Math.floor(Math.random() * 100),
+    check: Math.random() >= 0.5
   };
-  netSearchList.push(newItem);
+  netSearchList.value.push(newItem);
 }
 const useSearchTab = useSearchTabs();
 // 是否全选
-const selectAll = false;
-
+const selectAll = computed({
+  get: () => netSearchList.value.every(item => item.check),
+  set: val => {
+    netSearchList.value.forEach(item => {
+      item.check = val;
+    });
+  }
+});
 const router = useRouter();
 // 返回上一级
 const goBack = () => {
@@ -304,7 +311,7 @@ const curSort = ref("1");
           </el-skeleton>
         </el-col>
         <el-col :span="4" v-for="item in netSearchList" :key="item.id">
-          <item-card :item="item" />
+          <item-card :item="item" :hasCheck="true" />
         </el-col>
       </el-row>
     </div>
