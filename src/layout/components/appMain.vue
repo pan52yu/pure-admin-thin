@@ -28,11 +28,18 @@ const layout = computed(() => {
 });
 
 const getSectionStyle = computed(() => {
-  return [
+  /*return [
     hideTabs.value && layout ? "padding-top: 48px;" : "",
     !hideTabs.value && layout ? "padding-top: 85px;" : "",
     hideTabs.value && !layout.value ? "padding-top: 48px" : "",
     !hideTabs.value && !layout.value ? "padding-top: 85px;" : "",
+    props.fixedHeader ? "" : "padding-top: 0;"
+  ];*/
+  return [
+    hideTabs.value && layout ? "padding-top: 48px;" : "",
+    !hideTabs.value && layout ? "padding-top: 48px;" : "",
+    hideTabs.value && !layout.value ? "padding-top: 48px" : "",
+    !hideTabs.value && !layout.value ? "padding-top: 48px;" : "",
     props.fixedHeader ? "" : "padding-top: 0;"
   ];
 });
