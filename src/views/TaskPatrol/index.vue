@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import Plus from "@iconify-icons/ep/plus";
 import Setting from "@iconify-icons/ri/settings-3-line";
 import Search from "@iconify-icons/ep/search";
+import RefreshRight from "@iconify-icons/ep/refresh-right";
+
 import {
   ELIMINATE_THE_HAZARD,
   FILTER_INCOMING_TIME,
@@ -11,6 +13,9 @@ import {
   SOURCE_PLATFORM,
   STATUS_OPTIONS
 } from "@/utils/enum";
+import CardSkeleton from "@/layout/components/CardCom/CardSkeleton.vue";
+import { ListType } from "@/types/data";
+import CardItem from "@/layout/components/CardCom/CardItem.vue";
 defineOptions({
   name: "TaskPatrol"
 });
@@ -179,10 +184,64 @@ const curSort = ref("1");
 
 // 控制展开闭合
 const isOpenCard = ref(true);
+
+// 本页全部已读
+const allPageRead = () => {
+  // 调本页已读接口
+  netSearchList.value.forEach(item => {
+    item.readStatus = true;
+  });
+};
+// 全部标记已读
+const allMarkRead = () => {
+  // 调全部已读接口
+  netSearchList.value.forEach(item => {
+    item.readStatus = true;
+  });
+};
+// 全部删除
+// 所有标记已读
+// Card 区域
+const netSearchList = ref<ListType[]>([]);
+const getTaskList = () => {
+  for (let i = 0; i < 30; i++) {
+    const newItem: ListType = {
+      url: `https://picsum.photos/id/${Math.floor(
+        Math.random() * 100
+      )}/200/200`,
+      title: `Title ${i + 1}`,
+      loading: Math.random() >= 0.5,
+      avatar: `https://picsum.photos/id/${Math.floor(
+        Math.random() * 100
+      )}/50/50`,
+      name: `User ${i + 1}`,
+      dianzan: Math.floor(Math.random() * 100),
+      pinglun: Math.floor(Math.random() * 100),
+      zhuanfa: Math.floor(Math.random() * 100),
+      time: "2023-03-09 10:42:34",
+      favoriteStatus: Math.random() >= 0.5,
+      id: Math.floor(Math.random()),
+      check: Math.random() >= 0.5,
+      taskList: [
+        `#${Math.floor(Math.random() * 1000)}任务`,
+        `#${Math.floor(Math.random() * 1000)}任务`
+      ],
+      readStatus: Math.random() >= 0.5,
+      keywords: [
+        `${Math.floor(Math.random() * 1000)}词`,
+        `${Math.floor(Math.random() * 1000)}词`
+      ]
+    };
+    netSearchList.value.push(newItem);
+  }
+};
+onMounted(() => {
+  getTaskList();
+});
 </script>
 
 <template>
-  <div>
+  <div class="task">
     <el-tabs
       v-model="editableTabsValue"
       type="card"
@@ -195,8 +254,8 @@ const isOpenCard = ref(true);
         :label="item.title"
         :name="item.name"
       >
-        <div class="station_from">
-          <div class="station_from_first" :class="{ no_open: isOpenCard }">
+        <div class="task_patrol">
+          <div class="task_patrol_first" :class="{ no_open: isOpenCard }">
             <div>
               <span>关键词</span> <el-input v-model="stationFrom.keyWord" />
             </div>
@@ -223,7 +282,7 @@ const isOpenCard = ref(true);
               </el-select>
             </div>
           </div>
-          <div class="station_from_two" :class="{ no_open: isOpenCard }">
+          <div class="task_patrol_two" :class="{ no_open: isOpenCard }">
             过滤任务
             <el-switch
               v-model="stationFrom.filterTasks"
@@ -246,7 +305,7 @@ const isOpenCard = ref(true);
               }}</el-checkbox>
             </el-checkbox-group>
           </div>
-          <div class="station_from_two" :class="{ no_open: isOpenCard }">
+          <div class="task_patrol_two" :class="{ no_open: isOpenCard }">
             过滤同城
             <el-switch
               v-model="stationFrom.filterCity"
@@ -269,7 +328,7 @@ const isOpenCard = ref(true);
               }}</el-checkbox>
             </el-checkbox-group>
           </div>
-          <div class="station_from_two" :class="{ no_open: isOpenCard }">
+          <div class="task_patrol_two" :class="{ no_open: isOpenCard }">
             过滤用户
             <el-switch
               v-model="stationFrom.filterUsers"
@@ -292,7 +351,7 @@ const isOpenCard = ref(true);
               }}</el-checkbox>
             </el-checkbox-group>
           </div>
-          <div class="station_from_three" :class="{ no_open: isOpenCard }">
+          <div class="task_patrol_three" :class="{ no_open: isOpenCard }">
             <p>发布时间</p>
             <span
               :class="{ active: stationFrom.filterPub === item.value }"
@@ -310,7 +369,7 @@ const isOpenCard = ref(true);
               >{{ item.label }}</span
             >
           </div>
-          <div class="station_from_four" :class="{ no_open: isOpenCard }">
+          <div class="task_patrol_four" :class="{ no_open: isOpenCard }">
             <div>
               <span>来源平台</span>
               <el-select
@@ -369,7 +428,7 @@ const isOpenCard = ref(true);
             }}</span>
           </div>
           <el-divider />
-          <div class="station_from_search">
+          <div class="task_patrol_search">
             <el-button><IconifyIconOffline :icon="Search" />搜索</el-button>
             <span>分析报告</span> | <span>导出</span> |
             <span>保存为常用</span>
@@ -380,7 +439,7 @@ const isOpenCard = ref(true);
               </el-tag>
             </div>
           </div>
-          <div class="station_from_sort">
+          <div class="task_patrol_sort">
             <p>排序:</p>
             <span
               :class="{ active: curSort === item.value }"
@@ -390,6 +449,37 @@ const isOpenCard = ref(true);
               >{{ item.label }}</span
             >
           </div>
+        </div>
+        <div class="task_patrol_body">
+          <div class="top_loading">
+            <div class="top_loading_l">
+              <span class="loader" style="margin-right: 10px" />
+              <span>从当前任务中搜索到 <i>9999</i></span>
+            </div>
+            <div class="top_loading_c">
+              <el-button>
+                <IconifyIconOffline
+                  :icon="RefreshRight"
+                  style="font-size: 18px; margin-right: 10px"
+                />
+                新检索到<span>999</span>条，点击加载
+              </el-button>
+            </div>
+            <div class="top_loading_r">
+              <el-button @click="allPageRead">将本页全部标为已读</el-button>
+              <el-button
+                @click="allMarkRead"
+                style="width: 110px; background: #fff; color: #000"
+                >将所有标为已读</el-button
+              >
+            </div>
+          </div>
+          <el-row :gutter="30">
+            <el-col :span="4"> <card-skeleton /> </el-col>
+            <el-col :span="4" v-for="item in netSearchList" :key="item.id">
+              <card-item :item="item" />
+            </el-col>
+          </el-row>
         </div>
       </el-tab-pane>
       <el-tab-pane name="add">
@@ -413,6 +503,10 @@ const isOpenCard = ref(true);
 </template>
 
 <style lang="scss" scoped>
+.task {
+  background: #fff;
+}
+
 .demo-tabs > .el-tabs__content {
   padding: 32px;
   color: #6b778c;
@@ -423,6 +517,7 @@ const isOpenCard = ref(true);
 ::v-deep(.el-tabs__header) {
   background: #d9d9d9;
   padding: 15px 0 0 15px;
+  margin: 0;
   height: 56px;
 
   .el-tabs__item {
@@ -445,7 +540,7 @@ const isOpenCard = ref(true);
   }
 }
 
-.station_from {
+.task_patrol {
   background: #f5f5f5;
   padding: 20px 35px;
   color: #595959;
@@ -453,6 +548,7 @@ const isOpenCard = ref(true);
   .no_open {
     opacity: 0;
     height: 0;
+    margin: 3px 0;
   }
 
   div {
@@ -581,5 +677,10 @@ const isOpenCard = ref(true);
       color: #000;
     }
   }
+}
+
+.task_patrol_body {
+  background: #fff;
+  padding: 20px 30px 130px;
 }
 </style>

@@ -2,7 +2,7 @@
 import { ListType } from "@/types/data";
 import { onMounted, PropType, ref } from "vue";
 import { useSearchTabs } from "@/store/modules/searchTabs";
-import ItemCard from "@/views/NetworkSearch/components/ItemCard.vue";
+import CardItem from "@/layout/components/CardCom/CardItem.vue";
 defineOptions({
   name: "ResultCard"
 });
@@ -75,7 +75,7 @@ onMounted(() => {
       </el-skeleton>
     </el-col>
     <el-col :span="8" v-for="item in cardListRef" :key="item.id">
-      <item-card :item="item" />
+      <card-item :item="item" />
     </el-col>
   </el-row>
 </template>

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import TopBanner from "@/views/NetworkSearch/components/TopBanner.vue";
-import ItemCard from "@/views/NetworkSearch/components/ItemCard.vue";
 import { ListType } from "@/types/data";
 import { useSearchTabs } from "@/store/modules/searchTabs";
 import RefreshRight from "@iconify-icons/ep/refresh-right";
 import { computed, ref } from "vue";
 import MyFavorites from "@/components/MyFavorites.vue";
 import { useRouter } from "vue-router";
+import CardItem from "@/layout/components/CardCom/CardItem.vue";
 
 defineOptions({
   name: "SearchNetwork"
@@ -95,7 +95,7 @@ const goSearchNet = () => {
           </el-skeleton>
         </el-col>
         <el-col :span="4" v-for="item in netSearchList" :key="item.id">
-          <item-card :item="item" :has-check="true" />
+          <card-item :item="item" :has-check="true" />
         </el-col>
       </el-row>
     </div>

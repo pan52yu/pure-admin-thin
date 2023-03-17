@@ -1,15 +1,34 @@
 export type ListType = {
+  // 图片URL
   url: string;
+  // 标题
   title: string;
+  // 是否正在加载
   loading: boolean;
+  // 头像
   avatar: string;
+  // 用户名称
   name: string;
+  // 点赞数
   dianzan: number;
+  // 评论数
   pinglun: number;
+  // 转发数
   zhuanfa: number;
+  // 发布时间
   time: string;
+  // 收藏
   favoriteStatus: boolean;
+  // 是否有动画
   animation?: boolean;
+  // ID
   id?: number;
+  // 是否选中
   check?: boolean;
+  // 任务列表
+  taskList?: string[];
+  // 已读未读
+  readStatus?: boolean;
+  // 关键词
+  keywords?: string[];
 };

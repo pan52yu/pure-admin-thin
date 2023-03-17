@@ -3,7 +3,7 @@ import { PropType } from "vue";
 import { ListType } from "@/types/data";
 
 defineOptions({
-  name: "ItemCard"
+  name: "CardItem"
 });
 defineProps({
   item: {
@@ -14,6 +14,21 @@ defineProps({
     default: false
   }
 });
+// 改变收藏
+const collection = ite => {
+  ite.favoriteStatus = !ite.favoriteStatus;
+};
+
+// 改变已读未读
+const changReadStatus = ite => {
+  ite.readStatus = !ite.readStatus;
+};
+
+// 移除任务
+const removeTack = (ite, tag) => {
+  console.log(ite.taskList, tag, ite.taskList.indexOf(tag));
+  ite.taskList.splice(ite.taskList.indexOf(tag), 1);
+};
 </script>
 
 <template>
@@ -39,21 +54,47 @@ defineProps({
         <span>{{ item.name }}</span>
       </div>
       <div>
-        <font-icon icon="icon-dianzan" /><span>{{ item.dianzan }}</span>
-        <font-icon icon="icon-pinglun" style="margin-left: 5px" /><span>{{
-          item.pinglun
-        }}</span>
-        <font-icon icon="icon-zhuanfa" /><span>{{ item.zhuanfa }}</span>
+        <font-icon icon="icon-dianzan" />
+        <span>{{ item.dianzan }}</span>
+        <font-icon icon="icon-pinglun" style="margin-left: 5px" />
+        <span>{{ item.pinglun }}</span>
+        <font-icon icon="icon-zhuanfa" />
+        <span>{{ item.zhuanfa }}</span>
       </div>
     </div>
     <div class="card_detail">
       <div>发布 {{ item.time }}</div>
       <div>
-        <el-button v-if="item.favoriteStatus" size="small" type="primary" plain
-          >收藏</el-button
-        >
-        <el-button v-else size="small" type="info" plain>已收藏</el-button>
+        <el-button
+          size="small"
+          :type="item.favoriteStatus ? 'primary' : 'info'"
+          plain
+          @click="collection(item)"
+          >{{ item.favoriteStatus ? "收藏" : "已收藏" }}
+        </el-button>
       </div>
+    </div>
+    <div class="card_tack" v-if="item.taskList && item.taskList.length">
+      <el-tag
+        v-for="tag in item.taskList"
+        :key="tag"
+        closable
+        @close="removeTack(item, tag)"
+      >
+        {{ tag }}
+      </el-tag>
+    </div>
+    <div v-if="item.keywords" class="card_read">
+      <el-button
+        @click="changReadStatus(item)"
+        size="small"
+        :type="item.readStatus ? 'info' : 'primary'"
+        plain
+        >{{ item.readStatus ? "已读" : "未读" }}
+      </el-button>
+      <span v-for="words in item.keywords" :key="words">
+        {{ words }}
+      </span>
     </div>
     <template v-if="hasCheck">
       <!--  eslint-disable-next-line vue/no-mutating-props  -->
@@ -111,6 +152,36 @@ defineProps({
 
   .el-checkbox {
     height: 20px;
+  }
+
+  .card_tack {
+    margin: 5px 0;
+
+    .el-tag {
+      color: #1890ff;
+      border: none;
+      background: transparent;
+    }
+  }
+
+  .card_read {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-left: 10px;
+    }
+
+    .el-button {
+      border-radius: 5px;
+      color: #fff;
+      background: #d9d9d9;
+      border: none;
+    }
+
+    .el-button--primary {
+      background: #52c41a;
+    }
   }
 }
 </style>

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import ItemCard from "@/views/NetworkSearch/components/ItemCard.vue";
 import { ListType } from "@/types/data";
 import { useSearchTabs } from "@/store/modules/searchTabs";
 import RefreshRight from "@iconify-icons/ep/refresh-right";
@@ -15,6 +14,7 @@ import {
   STATUS_OPTIONS
 } from "@/utils/enum";
 import MyFavorites from "@/components/MyFavorites.vue";
+import CardItem from "@/layout/components/CardCom/CardItem.vue";
 defineOptions({
   name: "SearchStation"
 });
@@ -313,7 +313,7 @@ const curSort = ref("1");
           </el-skeleton>
         </el-col>
         <el-col :span="4" v-for="item in netSearchList" :key="item.id">
-          <item-card :item="item" :hasCheck="true" />
+          <card-item :item="item" :hasCheck="true" />
         </el-col>
       </el-row>
     </div>
