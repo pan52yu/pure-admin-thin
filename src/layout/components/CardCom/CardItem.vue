@@ -12,6 +12,10 @@ defineProps({
   hasCheck: {
     type: Boolean,
     default: false
+  },
+  imgHeight: {
+    type: String,
+    default: "380px"
   }
 });
 // 改变收藏
@@ -37,7 +41,7 @@ const removeTack = (ite, tag) => {
     :class="{ animate__backInLeft: item.animation }"
   >
     <div class="card_img">
-      <el-image :src="item.url" fit="fill" />
+      <el-image :style="{ height: imgHeight }" :src="item.url" fit="fill" />
     </div>
     <p>
       <span>{{ item.title }}</span>
@@ -115,7 +119,6 @@ const removeTack = (ite, tag) => {
 
     .el-image {
       width: 100%;
-      height: 380px;
     }
   }
 

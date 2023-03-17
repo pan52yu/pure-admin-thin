@@ -17,6 +17,8 @@ import CardSkeleton from "@/layout/components/CardCom/CardSkeleton.vue";
 import { ListType } from "@/types/data";
 import CardItem from "@/layout/components/CardCom/CardItem.vue";
 import CardPagination from "@/layout/components/CardCom/CardPagination.vue";
+import MyFavorites from "@/components/MyFavorites.vue";
+
 defineOptions({
   name: "TaskPatrol"
 });
@@ -247,28 +249,34 @@ onMounted(() => {
 
 <template>
   <div class="task">
+    <my-favorites />
     <el-tabs
       v-model="editableTabsValue"
       type="card"
       class="demo-tabs"
       @tab-remove="removeTab"
     >
+      <!--   任务标签   -->
       <el-tab-pane
         v-for="item in editableTabs"
         :key="item.name"
         :label="item.title"
         :name="item.name"
       >
+        <!--    表单区域    -->
         <div class="task_patrol">
           <div class="task_patrol_first" :class="{ no_open: isOpenCard }">
             <div>
-              <span>关键词</span> <el-input v-model="stationFrom.keyWord" />
+              <span>关键词</span>
+              <el-input v-model="stationFrom.keyWord" />
             </div>
             <div>
-              <span>帐号</span> <el-input v-model="stationFrom.accountNumber" />
+              <span>帐号</span>
+              <el-input v-model="stationFrom.accountNumber" />
             </div>
             <div>
-              <span>视频ID</span> <el-input v-model="stationFrom.videoId" />
+              <span>视频ID</span>
+              <el-input v-model="stationFrom.videoId" />
             </div>
             <div>
               <span>认证状态</span>
@@ -299,15 +307,15 @@ onMounted(() => {
               v-model="allFilterTasks"
               :indeterminate="isIndeterminateTask"
               @change="checkAllTask"
-              >全部</el-checkbox
-            >
+              >全部
+            </el-checkbox>
             <el-checkbox-group
               v-model="stationFrom.checkedTasks"
               @change="checkedTask"
             >
-              <el-checkbox v-for="task in taskList" :key="task" :label="task">{{
-                task
-              }}</el-checkbox>
+              <el-checkbox v-for="task in taskList" :key="task" :label="task"
+                >{{ task }}
+              </el-checkbox>
             </el-checkbox-group>
           </div>
           <div class="task_patrol_two" :class="{ no_open: isOpenCard }">
@@ -322,15 +330,15 @@ onMounted(() => {
               v-model="checkAll"
               :indeterminate="isIndeterminate"
               @change="handleCheckAllChange"
-              >全部属地同城</el-checkbox
-            >
+              >全部属地同城
+            </el-checkbox>
             <el-checkbox-group
               v-model="stationFrom.checkedCities"
               @change="handleCheckedCitiesChange"
             >
-              <el-checkbox v-for="city in cities" :key="city" :label="city">{{
-                city
-              }}</el-checkbox>
+              <el-checkbox v-for="city in cities" :key="city" :label="city"
+                >{{ city }}
+              </el-checkbox>
             </el-checkbox-group>
           </div>
           <div class="task_patrol_two" :class="{ no_open: isOpenCard }">
@@ -345,15 +353,15 @@ onMounted(() => {
               v-model="allFilterUser"
               :indeterminate="isIndeterminateUser"
               @change="checkAllUser"
-              >全部</el-checkbox
-            >
+              >全部
+            </el-checkbox>
             <el-checkbox-group
               v-model="stationFrom.checkedUsers"
               @change="checkedUser"
             >
-              <el-checkbox v-for="task in userList" :key="task" :label="task">{{
-                task
-              }}</el-checkbox>
+              <el-checkbox v-for="task in userList" :key="task" :label="task"
+                >{{ task }}
+              </el-checkbox>
             </el-checkbox-group>
           </div>
           <div class="task_patrol_three" :class="{ no_open: isOpenCard }">
@@ -412,18 +420,15 @@ onMounted(() => {
                 v-model="allRules"
                 :indeterminate="isIndeterminateRule"
                 @change="checkAllRule"
-                >全部</el-checkbox
-              >
+                >全部
+              </el-checkbox>
               <el-checkbox-group
                 v-model="stationFrom.checkedRule"
                 @change="checkedRule"
               >
-                <el-checkbox
-                  v-for="city in ruleList"
-                  :key="city"
-                  :label="city"
-                  >{{ city }}</el-checkbox
-                >
+                <el-checkbox v-for="city in ruleList" :key="city" :label="city"
+                  >{{ city }}
+                </el-checkbox>
               </el-checkbox-group>
             </div>
           </div>
@@ -434,7 +439,10 @@ onMounted(() => {
           </div>
           <el-divider />
           <div class="task_patrol_search">
-            <el-button><IconifyIconOffline :icon="Search" />搜索</el-button>
+            <el-button>
+              <IconifyIconOffline :icon="Search" />
+              搜索
+            </el-button>
             <span>分析报告</span> | <span>导出</span> |
             <span>保存为常用</span>
             <div class="common_search">
@@ -455,7 +463,9 @@ onMounted(() => {
             >
           </div>
         </div>
+        <!--    主体内容    -->
         <div class="task_patrol_body">
+          <!--     内容上方状态栏     -->
           <div class="top_loading">
             <div class="top_loading_l">
               <span class="loader" style="margin-right: 10px" />
@@ -475,16 +485,20 @@ onMounted(() => {
               <el-button
                 @click="allMarkRead"
                 style="width: 110px; background: #fff; color: #000"
-                >将所有标为已读</el-button
-              >
+                >将所有标为已读
+              </el-button>
             </div>
           </div>
+          <!--    内容card      -->
           <el-row :gutter="30">
-            <el-col :span="4"> <card-skeleton /> </el-col>
+            <el-col :span="4">
+              <card-skeleton />
+            </el-col>
             <el-col :span="4" v-for="item in taskPatrolList" :key="item.id">
               <card-item :item="item" />
             </el-col>
           </el-row>
+          <!--    分页      -->
           <card-pagination
             :page="stationFrom.page"
             :limit="stationFrom.size"
@@ -493,21 +507,23 @@ onMounted(() => {
           />
         </div>
       </el-tab-pane>
+      <!--   新建任务   -->
       <el-tab-pane name="add">
         <template #label>
           <div class="custom-tabs-label">
             <span><IconifyIconOffline :icon="Plus" /> 新建任务</span>
           </div>
         </template>
-        Route
+        新建任务
       </el-tab-pane>
+      <!--   管理任务   -->
       <el-tab-pane name="manage">
         <template #label>
           <div class="custom-tabs-label">
             <span><IconifyIconOffline :icon="Setting" /> 管理任务</span>
           </div>
         </template>
-        Route
+        管理任务
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -516,182 +532,182 @@ onMounted(() => {
 <style lang="scss" scoped>
 .task {
   background: #fff;
-}
 
-.demo-tabs > .el-tabs__content {
-  padding: 32px;
-  color: #6b778c;
-  font-size: 32px;
-  font-weight: 600;
-}
-
-::v-deep(.el-tabs__header) {
-  background: #d9d9d9;
-  padding: 15px 0 0 15px;
-  margin: 0;
-  height: 56px;
-
-  .el-tabs__item {
-    background: #fff;
+  .demo-tabs > .el-tabs__content {
+    padding: 32px;
+    color: #6b778c;
+    font-size: 32px;
+    font-weight: 600;
   }
-}
 
-::v-deep(.el-tabs__nav) {
-  display: flex;
-}
+  ::v-deep(.el-tabs__header) {
+    background: #d9d9d9;
+    padding: 15px 0 0 15px;
+    margin: 0;
+    height: 56px;
 
-.custom-tabs-label {
-  span {
+    .el-tabs__item {
+      background: #fff;
+    }
+  }
+
+  ::v-deep(.el-tabs__nav) {
     display: flex;
-    align-items: center;
   }
 
-  svg {
-    margin-right: 5px;
-  }
-}
-
-.task_patrol {
-  background: #f5f5f5;
-  padding: 20px 35px;
-  color: #595959;
-
-  .no_open {
-    opacity: 0;
-    height: 0;
-    margin: 3px 0;
-  }
-
-  div {
-    display: flex;
-    align-items: center;
-    opacity: 1;
-  }
-
-  &_first {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-
-    div {
-      width: 25%;
-      font-size: 16px;
+  .custom-tabs-label {
+    span {
       display: flex;
       align-items: center;
+    }
 
-      .el-select,
-      .el-input {
-        flex: 1;
-        margin-left: 5px;
+    svg {
+      margin-right: 5px;
+    }
+  }
+
+  .task_patrol {
+    background: #f5f5f5;
+    padding: 20px 35px;
+    color: #595959;
+
+    .no_open {
+      opacity: 0;
+      height: 0;
+      margin: 3px 0;
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      opacity: 1;
+    }
+
+    &_first {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+
+      div {
+        width: 25%;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+
+        .el-select,
+        .el-input {
+          flex: 1;
+          margin-left: 5px;
+        }
+
+        &:nth-child(-n + 3) {
+          margin-right: 30px;
+        }
+      }
+    }
+
+    &_two {
+      margin: 10px 0;
+
+      .el-switch {
+        margin: 0 15px 0 10px;
       }
 
-      &:nth-child(-n + 3) {
+      .el-checkbox {
+        margin: 0 15px;
+      }
+    }
+
+    &_three {
+      margin: 15px 0 8px 0;
+
+      span {
+        display: inline-block;
+        width: 43px;
+        height: 24px;
+        text-align: center;
+        margin: 0 5px;
+        cursor: pointer;
+      }
+
+      .active {
+        color: #fff;
+        background: #1890ff;
+        border-radius: 5px;
+      }
+
+      div {
+        margin-left: 50px;
+      }
+    }
+
+    &_four {
+      div:first-child {
         margin-right: 30px;
       }
-    }
-  }
 
-  &_two {
-    margin: 10px 0;
+      div:nth-child(2) {
+        margin-right: 10px;
+      }
 
-    .el-switch {
-      margin: 0 15px 0 10px;
-    }
-
-    .el-checkbox {
-      margin: 0 15px;
-    }
-  }
-
-  &_three {
-    margin: 15px 0 8px 0;
-
-    span {
-      display: inline-block;
-      width: 43px;
-      height: 24px;
-      text-align: center;
-      margin: 0 5px;
-      cursor: pointer;
+      .el-checkbox-group {
+        .el-checkbox {
+          margin: 0 0 0 15px;
+        }
+      }
     }
 
-    .active {
-      color: #fff;
-      background: #1890ff;
-      border-radius: 5px;
+    .el-divider--horizontal {
+      margin: 15px 0;
     }
 
-    div {
-      margin-left: 50px;
-    }
-  }
+    &_search {
+      padding-left: 70px;
 
-  &_four {
-    div:first-child {
-      margin-right: 30px;
+      .el-button {
+        margin-right: 10px;
+      }
+
+      span {
+        font-size: 14px;
+        color: #595959;
+        cursor: pointer;
+        margin: 0 10px;
+      }
+
+      .common_search {
+        font-weight: 700;
+        font-size: 14px;
+        color: #595959;
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+      }
     }
 
-    div:nth-child(2) {
-      margin-right: 10px;
-    }
+    &_sort {
+      justify-content: right;
 
-    .el-checkbox-group {
-      .el-checkbox {
-        margin: 0 0 0 15px;
+      p {
+        font-size: 14px;
+        color: #595959;
+      }
+
+      span {
+        color: #1890ff;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+
+      .active {
+        color: #000;
       }
     }
   }
 
-  .el-divider--horizontal {
-    margin: 15px 0;
+  .task_patrol_body {
+    background: #fff;
+    padding: 20px 30px 130px;
   }
-
-  &_search {
-    padding-left: 70px;
-
-    .el-button {
-      margin-right: 10px;
-    }
-
-    span {
-      font-size: 14px;
-      color: #595959;
-      cursor: pointer;
-      margin: 0 10px;
-    }
-
-    .common_search {
-      font-weight: 700;
-      font-size: 14px;
-      color: #595959;
-      margin-left: 20px;
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  &_sort {
-    justify-content: right;
-
-    p {
-      font-size: 14px;
-      color: #595959;
-    }
-
-    span {
-      color: #1890ff;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    .active {
-      color: #000;
-    }
-  }
-}
-
-.task_patrol_body {
-  background: #fff;
-  padding: 20px 30px 130px;
 }
 </style>

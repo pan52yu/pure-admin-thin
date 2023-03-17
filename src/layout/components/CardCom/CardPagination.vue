@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 
 // 引入element-ui中文包
 import zhLocale from "element-plus/lib/locale/lang/zh-cn";
+
 defineOptions({
   name: "CardPagination"
 });
@@ -72,9 +73,6 @@ const handleSizeChange = val => {
 const handleCurrentChange = val => {
   emit("pagination", { page: val, limit: pageSize.value });
 };
-onMounted(() => {
-  console.log(props);
-});
 </script>
 
 <template>
