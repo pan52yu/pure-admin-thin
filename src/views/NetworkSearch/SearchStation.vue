@@ -4,7 +4,7 @@ import { useSearchTabs } from "@/store/modules/searchTabs";
 import RefreshRight from "@iconify-icons/ep/refresh-right";
 import Search from "@iconify-icons/ep/search";
 import { useRouter } from "vue-router";
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import {
   ELIMINATE_THE_HAZARD,
   FILTER_INCOMING_TIME,
@@ -15,33 +15,44 @@ import {
 } from "@/utils/enum";
 import MyFavorites from "@/components/MyFavorites.vue";
 import CardItem from "@/layout/components/CardCom/CardItem.vue";
+import CardPagination from "@/layout/components/CardCom/CardPagination.vue";
 defineOptions({
   name: "SearchStation"
 });
-const netSearchList = ref<ListType[]>([]);
-for (let i = 0; i < 30; i++) {
-  const newItem: ListType = {
-    url: `https://picsum.photos/id/${Math.floor(Math.random() * 100)}/200/200`,
-    title: `Title ${i + 1}`,
-    loading: Math.random() >= 0.5,
-    avatar: `https://picsum.photos/id/${Math.floor(Math.random() * 100)}/50/50`,
-    name: `User ${i + 1}`,
-    dianzan: Math.floor(Math.random() * 100),
-    pinglun: Math.floor(Math.random() * 100),
-    zhuanfa: Math.floor(Math.random() * 100),
-    time: "2023-03-09 10:42:34",
-    favoriteStatus: Math.random() >= 0.5,
-    id: Math.floor(Math.random() * 100),
-    check: Math.random() >= 0.5
-  };
-  netSearchList.value.push(newItem);
-}
+const stationList = ref<ListType[]>([]);
+const stationTotal = ref(666);
+const getStationList = (obj = { page: 1, limit: 10 }) => {
+  stationFrom.value.page = obj.page;
+  stationFrom.value.size = obj.limit;
+  stationList.value = [];
+  for (let i = 0; i < 30; i++) {
+    const newItem: ListType = {
+      url: `https://picsum.photos/id/${Math.floor(
+        Math.random() * 100
+      )}/200/200`,
+      title: `Title ${i + 1}`,
+      loading: Math.random() >= 0.5,
+      avatar: `https://picsum.photos/id/${Math.floor(
+        Math.random() * 100
+      )}/50/50`,
+      name: `User ${i + 1}`,
+      dianzan: Math.floor(Math.random() * 100),
+      pinglun: Math.floor(Math.random() * 100),
+      zhuanfa: Math.floor(Math.random() * 100),
+      time: "2023-03-09 10:42:34",
+      favoriteStatus: Math.random() >= 0.5,
+      id: Math.floor(Math.random() * 100),
+      check: Math.random() >= 0.5
+    };
+    stationList.value.push(newItem);
+  }
+};
 const useSearchTab = useSearchTabs();
 // 是否全选
 const selectAll = computed({
-  get: () => netSearchList.value.every(item => item.check),
+  get: () => stationList.value.every(item => item.check),
   set: val => {
-    netSearchList.value.forEach(item => {
+    stationList.value.forEach(item => {
       item.check = val;
     });
   }
@@ -57,6 +68,8 @@ const goSearchNet = () => {
 };
 
 const stationFrom = ref({
+  page: 1,
+  size: 10,
   keyWord: "",
   accountNumber: "",
   videoId: "",
@@ -125,6 +138,9 @@ const handleCheckedCitiesChange2 = (value: string[]) => {
 const sortList = SORT_LIST;
 // 当前排序规则
 const curSort = ref("1");
+onMounted(() => {
+  getStationList();
+});
 </script>
 
 <template>
@@ -312,10 +328,16 @@ const curSort = ref("1");
             </template>
           </el-skeleton>
         </el-col>
-        <el-col :span="4" v-for="item in netSearchList" :key="item.id">
+        <el-col :span="4" v-for="item in stationList" :key="item.id">
           <card-item :item="item" :hasCheck="true" />
         </el-col>
       </el-row>
+      <card-pagination
+        :page="stationFrom.page"
+        :limit="stationFrom.size"
+        :total="stationTotal"
+        @pagination="getStationList"
+      />
     </div>
   </div>
 </template>

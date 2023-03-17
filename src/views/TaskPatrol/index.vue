@@ -16,6 +16,7 @@ import {
 import CardSkeleton from "@/layout/components/CardCom/CardSkeleton.vue";
 import { ListType } from "@/types/data";
 import CardItem from "@/layout/components/CardCom/CardItem.vue";
+import CardPagination from "@/layout/components/CardCom/CardPagination.vue";
 defineOptions({
   name: "TaskPatrol"
 });
@@ -58,6 +59,8 @@ const removeTab = (targetName: string) => {
 };
 
 const stationFrom = ref({
+  page: 1,
+  size: 10,
   keyWord: "",
   accountNumber: "",
   videoId: "",
@@ -188,22 +191,24 @@ const isOpenCard = ref(true);
 // 本页全部已读
 const allPageRead = () => {
   // 调本页已读接口
-  netSearchList.value.forEach(item => {
+  taskPatrolList.value.forEach(item => {
     item.readStatus = true;
   });
 };
 // 全部标记已读
 const allMarkRead = () => {
   // 调全部已读接口
-  netSearchList.value.forEach(item => {
+  taskPatrolList.value.forEach(item => {
     item.readStatus = true;
   });
 };
-// 全部删除
-// 所有标记已读
-// Card 区域
-const netSearchList = ref<ListType[]>([]);
-const getTaskList = () => {
+// 列表
+const taskPatrolList = ref<ListType[]>([]);
+const taskTotal = ref(666);
+const getTaskList = (obj = { page: 1, limit: 10 }) => {
+  stationFrom.value.page = obj.page;
+  stationFrom.value.size = obj.limit;
+  taskPatrolList.value = [];
   for (let i = 0; i < 30; i++) {
     const newItem: ListType = {
       url: `https://picsum.photos/id/${Math.floor(
@@ -232,7 +237,7 @@ const getTaskList = () => {
         `${Math.floor(Math.random() * 1000)}词`
       ]
     };
-    netSearchList.value.push(newItem);
+    taskPatrolList.value.push(newItem);
   }
 };
 onMounted(() => {
@@ -476,10 +481,16 @@ onMounted(() => {
           </div>
           <el-row :gutter="30">
             <el-col :span="4"> <card-skeleton /> </el-col>
-            <el-col :span="4" v-for="item in netSearchList" :key="item.id">
+            <el-col :span="4" v-for="item in taskPatrolList" :key="item.id">
               <card-item :item="item" />
             </el-col>
           </el-row>
+          <card-pagination
+            :page="stationFrom.page"
+            :limit="stationFrom.size"
+            :total="taskTotal"
+            @pagination="getTaskList"
+          />
         </div>
       </el-tab-pane>
       <el-tab-pane name="add">

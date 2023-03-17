@@ -3,6 +3,7 @@ import { ListType } from "@/types/data";
 import { onMounted, PropType, ref } from "vue";
 import { useSearchTabs } from "@/store/modules/searchTabs";
 import CardItem from "@/layout/components/CardCom/CardItem.vue";
+import CardSkeleton from "@/layout/components/CardCom/CardSkeleton.vue";
 defineOptions({
   name: "ResultCard"
 });
@@ -60,19 +61,7 @@ onMounted(() => {
 <template>
   <el-row :gutter="30">
     <el-col :span="8" v-if="haveSkeleton && !useSeacchTab.endOfCountdown">
-      <el-skeleton animated>
-        <template #template>
-          <el-skeleton-item
-            variant="image"
-            style="width: 100%; height: 380px"
-          />
-          <div>
-            <el-skeleton-item variant="p" style="width: 80%" />
-            <el-skeleton-item variant="p" style="width: 80%" />
-            <el-skeleton-item variant="p" style="width: 60%" />
-          </div>
-        </template>
-      </el-skeleton>
+      <card-skeleton />
     </el-col>
     <el-col :span="8" v-for="item in cardListRef" :key="item.id">
       <card-item :item="item" />
