@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PropType } from "vue";
+import { PropType, ref } from "vue";
 import { ListType } from "@/types/data";
 
 defineOptions({
@@ -18,9 +18,14 @@ defineProps({
     default: "380px"
   }
 });
+const emit = defineEmits(["removeCard"]);
 // 改变收藏
 const collection = ite => {
   ite.favoriteStatus = !ite.favoriteStatus;
+  console.log(ite.favoriteStatus);
+  if (!ite.favoriteStatus) {
+    animateCard(ite);
+  }
 };
 
 // 改变已读未读
@@ -33,10 +38,22 @@ const removeTack = (ite, tag) => {
   console.log(ite.taskList, tag, ite.taskList.indexOf(tag));
   ite.taskList.splice(ite.taskList.indexOf(tag), 1);
 };
+const cardItem = ref(null);
+const animateCard = ite => {
+  const cardRect = cardItem.value.getBoundingClientRect();
+  const distanceX = 200 - cardRect.left - 300;
+  const distanceY = 0 - cardRect.top + 250;
+  cardItem.value.style.transition = "all 0.5s ease-in-out";
+  cardItem.value.style.transform = `translate(${distanceX}px, ${distanceY}px) scale(0.1)`;
+  setTimeout(() => {
+    emit("removeCard", ite.id);
+  }, 500);
+};
 </script>
 
 <template>
   <div
+    ref="cardItem"
     class="card_info animate__animated"
     :class="{ animate__backInLeft: item.animation }"
   >

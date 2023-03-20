@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import ArrowRight from "@iconify-icons/ep/arrow-right-bold";
 import ArrowLeft from "@iconify-icons/ep/arrow-left-bold";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useWindowScroll } from "@vueuse/core";
-import { ListType } from "@/types/data";
 import CardItem from "@/layout/components/CardCom/CardItem.vue";
+import { useFavorites } from "@/store/modules/favorites";
 
 defineOptions({
   name: "MyFavorites"
 });
 const isOpen = ref(false);
 const { y } = useWindowScroll();
-console.log(y);
+console.log(y.value);
 const labelValue = ref("0");
 const labelList = [
   {
@@ -27,32 +27,23 @@ const labelList = [
     value: "2"
   }
 ];
-const favoritesList: ListType[] = [];
-for (let i = 0; i < 9; i++) {
-  const newItem: ListType = {
-    url: `https://picsum.photos/id/${Math.floor(Math.random() * 100)}/200/200`,
-    title: `Title ${i + 1}`,
-    loading: i % 2 === 0,
-    avatar: `https://picsum.photos/id/${Math.floor(Math.random() * 100)}/50/50`,
-    name: `User ${i + 1}`,
-    dianzan: Math.floor(Math.random() * 100),
-    pinglun: Math.floor(Math.random() * 100),
-    zhuanfa: Math.floor(Math.random() * 100),
-    time: "2023-03-09 10:42:34",
-    favoriteStatus: i % 2 === 0,
-    id: Math.floor(Math.random() * 100)
-  };
-  favoritesList.push(newItem);
-}
+const favorite = useFavorites();
+onMounted(() => {
+  favorite.setFavoritesList("");
+});
 </script>
 
 <template>
   <div class="favorites">
-    <div class="fav_close" v-if="!isOpen" @click="isOpen = !isOpen">
+    <div
+      class="fav_close fav_animation fav_fix"
+      v-if="!isOpen"
+      @click="isOpen = !isOpen"
+    >
       <IconifyIconOffline :icon="ArrowRight" />
       <span>收藏夹</span>
     </div>
-    <div class="fav_open" v-else>
+    <div class="fav_open fav_animation" v-else>
       <div class="fav_open_title">
         <IconifyIconOffline :icon="ArrowLeft" @click="isOpen = !isOpen" />
         <div class="center">收藏夹</div>
@@ -74,7 +65,11 @@ for (let i = 0; i < 9; i++) {
         </el-select>
         <span>管理</span>
       </div>
-      <div class="fav_open_item" v-for="item in favoritesList" :key="item.id">
+      <div
+        class="fav_open_item"
+        v-for="item in favorite.favoritesList"
+        :key="item.id"
+      >
         <card-item :item="item" img-height="120px" />
       </div>
     </div>
@@ -90,7 +85,11 @@ for (let i = 0; i < 9; i++) {
   font-size: 20px;
   line-height: 50px;
   background: #f5f5f5;
-  z-index: 1000;
+  z-index: 997;
+
+  .fav_animation {
+    transition: width 3s ease-in-out;
+  }
 
   .fav_close {
     height: 155px;
@@ -110,6 +109,7 @@ for (let i = 0; i < 9; i++) {
 
   .fav_open {
     width: 230px;
+    transition: all 0.2s ease-in-out;
 
     &_title {
       width: 230px;
@@ -170,5 +170,9 @@ for (let i = 0; i < 9; i++) {
       }
     }
   }
+}
+
+.fav_fix {
+  position: fixed;
 }
 </style>

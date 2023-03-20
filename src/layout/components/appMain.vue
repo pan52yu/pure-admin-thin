@@ -138,7 +138,7 @@ const transitionMain = defineComponent({
 <style lang="scss" scoped>
 .app-main {
   width: 100%;
-  min-width: 1280px;
+  min-width: 1440px;
   //height: 100vh;
   position: relative;
   overflow-x: hidden;

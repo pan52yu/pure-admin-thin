@@ -15,9 +15,9 @@ import {
 } from "@/utils/enum";
 import CardSkeleton from "@/layout/components/CardCom/CardSkeleton.vue";
 import { ListType } from "@/types/data";
-import CardItem from "@/layout/components/CardCom/CardItem.vue";
 import CardPagination from "@/layout/components/CardCom/CardPagination.vue";
 import MyFavorites from "@/components/MyFavorites.vue";
+import CardList from "@/layout/components/CardCom/CardList.vue";
 
 defineOptions({
   name: "TaskPatrol"
@@ -227,7 +227,7 @@ const getTaskList = (obj = { page: 1, limit: 10 }) => {
       zhuanfa: Math.floor(Math.random() * 100),
       time: "2023-03-09 10:42:34",
       favoriteStatus: Math.random() >= 0.5,
-      id: Math.floor(Math.random()),
+      id: Math.floor(Math.random() * 10000),
       check: Math.random() >= 0.5,
       taskList: [
         `#${Math.floor(Math.random() * 1000)}任务`,
@@ -494,9 +494,10 @@ onMounted(() => {
             <el-col :span="4">
               <card-skeleton />
             </el-col>
-            <el-col :span="4" v-for="item in taskPatrolList" :key="item.id">
-              <card-item :item="item" />
-            </el-col>
+            <!--            <el-col :span="4" v-for="item in taskPatrolList" :key="item.id">-->
+            <!--              <card-item :item="item" />-->
+            <!--            </el-col>-->
+            <card-list :task-patrol-list="taskPatrolList" />
           </el-row>
           <!--    分页      -->
           <card-pagination
