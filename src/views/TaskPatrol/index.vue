@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import Plus from "@iconify-icons/ep/plus";
 import Setting from "@iconify-icons/ri/settings-3-line";
 import Search from "@iconify-icons/ep/search";
@@ -18,6 +18,8 @@ import { ListType } from "@/types/data";
 import CardPagination from "@/layout/components/CardCom/CardPagination.vue";
 import MyFavorites from "@/components/MyFavorites.vue";
 import CardList from "@/layout/components/CardCom/CardList.vue";
+import { ElNotification } from "element-plus";
+import { useRouter } from "vue-router";
 
 defineOptions({
   name: "TaskPatrol"
@@ -208,6 +210,7 @@ const allMarkRead = () => {
 const taskPatrolList = ref<ListType[]>([]);
 const taskTotal = ref(666);
 const getTaskList = (obj = { page: 1, limit: 10 }) => {
+  console.log(12345);
   stationFrom.value.page = obj.page;
   stationFrom.value.size = obj.limit;
   taskPatrolList.value = [];
@@ -242,8 +245,25 @@ const getTaskList = (obj = { page: 1, limit: 10 }) => {
     taskPatrolList.value.push(newItem);
   }
 };
+const router = useRouter();
+const notifications = ref(null);
 onMounted(() => {
   getTaskList();
+  notifications.value = ElNotification({
+    title: "未找到有效数据？",
+    dangerouslyUseHTMLString: true,
+    message:
+      "<span><a href='javascript:void(0);' style='color: #1890ff'>点击去全网搜索</a>，快速入库新数据</span>",
+    onClick: function () {
+      router.push("/networkSearch/network");
+    },
+    position: "bottom-right",
+    type: "info",
+    duration: 0
+  });
+});
+onUnmounted(() => {
+  notifications.value.close();
 });
 </script>
 
