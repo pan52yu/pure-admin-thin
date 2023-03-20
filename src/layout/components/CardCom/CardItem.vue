@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { PropType, ref } from "vue";
 import { ListType } from "@/types/data";
+import { useRouter } from "vue-router";
 
 defineOptions({
   name: "CardItem"
 });
-defineProps({
+const props = defineProps({
   item: {
     type: Object as PropType<ListType>
   },
@@ -42,12 +43,19 @@ const cardItem = ref(null);
 const animateCard = ite => {
   const cardRect = cardItem.value.getBoundingClientRect();
   const distanceX = 200 - cardRect.left - 300;
-  const distanceY = 0 - cardRect.top + 250;
+  const distanceY = 0 - cardRect.top + 200;
   cardItem.value.style.transition = "all 0.5s ease-in-out";
   cardItem.value.style.transform = `translate(${distanceX}px, ${distanceY}px) scale(0.1)`;
   setTimeout(() => {
     emit("removeCard", ite.id);
   }, 500);
+};
+const router = useRouter();
+const videoDetail = () => {
+  // /taskPatrol/detail/:id
+  router.push({
+    path: `/taskPatrol/detail/${props.item.id}`
+  });
 };
 </script>
 
@@ -58,7 +66,12 @@ const animateCard = ite => {
     :class="{ animate__backInLeft: item.animation }"
   >
     <div class="card_img">
-      <el-image :style="{ height: imgHeight }" :src="item.url" fit="fill" />
+      <el-image
+        @click="videoDetail"
+        :style="{ height: imgHeight }"
+        :src="item.url"
+        fit="fill"
+      />
     </div>
     <p>
       <span>{{ item.title }}</span>

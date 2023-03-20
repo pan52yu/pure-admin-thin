@@ -10,8 +10,15 @@ export default {
       path: "/taskPatrol",
       name: "TaskPatrol",
       component: () => import("@/views/TaskPatrol/index.vue"),
+      meta: { title: "任务巡查" }
+    },
+    {
+      path: "/taskPatrol/detail/:id",
+      name: "TaskPatrolDetail",
+      component: () => import("@/views/TaskPatrol/detail.vue"),
       meta: {
-        title: "任务巡查"
+        title: "视频详情",
+        showLink: false
       }
     }
   ]

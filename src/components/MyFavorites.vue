@@ -80,7 +80,7 @@ onMounted(() => {
 .favorites {
   position: absolute;
   left: 0;
-  top: 360px;
+  top: 35vh;
   min-width: 50px;
   font-size: 20px;
   line-height: 50px;
