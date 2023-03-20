@@ -109,7 +109,12 @@ onMounted(() => {
 
   .fav_open {
     width: 230px;
+    height: 85vh;
     transition: all 0.2s ease-in-out;
+    background: #f5f5f5;
+    position: fixed;
+    top: 100px;
+    overflow-y: scroll;
 
     &_title {
       width: 230px;
