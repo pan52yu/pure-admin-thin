@@ -4,6 +4,8 @@ import ArrowRight from "@iconify-icons/ep/arrow-right-bold";
 import genUserImg from "@/assets/imgs/scuser.png";
 import RightDetailUser from "@/views/TaskPatrol/components/RightDetailUser.vue";
 import RightDetailVideo from "@/views/TaskPatrol/components/RightDetailVideo.vue";
+import RightDetailOperation from "@/views/TaskPatrol/components/RightDetailOperation.vue";
+import RightDetailComments from "@/views/TaskPatrol/components/RightDetailComments.vue";
 
 defineOptions({
   name: "TaskPatrolDetail"
@@ -65,11 +67,8 @@ onMounted(() => {
     <div class="right_detail">
       <right-detail-user :user-detail="userDetail" />
       <right-detail-video />
-      <div class="right_detail_operation">
-        <div class="title">
-          <h4>操作</h4>
-        </div>
-      </div>
+      <right-detail-operation />
+      <right-detail-comments />
     </div>
   </div>
 </template>
@@ -114,12 +113,13 @@ onMounted(() => {
 
     .right_detail_user,
     .right_detail_video,
-    .right_detail_operation {
+    .right_detail_operation,
+    .right_detail_comments {
       background: #fff;
       padding: 40px;
     }
 
-    h4 {
+    ::v-deep(h4) {
       font-size: 24px;
       line-height: 32px;
       font-weight: 700;

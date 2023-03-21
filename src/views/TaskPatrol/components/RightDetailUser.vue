@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ref } from "vue";
+
 defineOptions({
   name: "RightDetailUser"
 });
@@ -50,6 +52,8 @@ const userInfoList = [
     value: props.userDetail.liveVideo
   }
 ];
+// 定时采集
+const timeAcp = ref(true);
 </script>
 
 <template>
@@ -63,6 +67,9 @@ const userInfoList = [
         <el-avatar :size="115" :src="userDetail.userAvatar" />
         <div class="person">个人认证</div>
         <div class="attention">关注 开启定时采集</div>
+        <div>
+          <el-checkbox v-model="timeAcp" label="已开启定时采集" />
+        </div>
       </div>
       <div class="center">
         <div v-for="(item, index) in userInfoList" :key="index">
