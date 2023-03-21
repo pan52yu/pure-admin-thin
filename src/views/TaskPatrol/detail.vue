@@ -65,6 +65,11 @@ onMounted(() => {
     <div class="right_detail">
       <right-detail-user :user-detail="userDetail" />
       <right-detail-video />
+      <div class="right_detail_operation">
+        <div class="title">
+          <h4>操作</h4>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -108,7 +113,8 @@ onMounted(() => {
     font-size: 14px;
 
     .right_detail_user,
-    .right_detail_video {
+    .right_detail_video,
+    .right_detail_operation {
       background: #fff;
       padding: 40px;
     }
