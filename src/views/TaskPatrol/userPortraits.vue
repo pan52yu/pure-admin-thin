@@ -1,0 +1,132 @@
+<script lang="ts" setup>
+import RightDetailUser from "@/views/TaskPatrol/components/RightDetailUser.vue";
+import { onMounted, ref } from "vue";
+import { USER_DETAIL } from "@/utils/enum";
+import WordCloud from "@/components/WordCloud.vue";
+
+defineOptions({
+  name: "userPortraits"
+});
+// 用户信息
+const userDetail = ref(USER_DETAIL);
+// 获取用户信息
+const getUserDetail = () => {
+  for (let i = 0; i < 5; i++) {
+    userDetail.value.labelList.push(`#标签${Math.floor(Math.random() * 20)}`);
+  }
+  for (let i = 0; i < 30; i++) {
+    userDetail.value.sameCityList.push(
+      `同城${Math.floor(Math.random() * 100)}`
+    );
+  }
+};
+
+onMounted(() => {
+  getUserDetail();
+});
+</script>
+
+<template>
+  <div class="user_portraits">
+    <h1>用户画像</h1>
+    <right-detail-user :user-detail="userDetail" />
+    <div class="user_portraits_two">
+      <div class="two_body">
+        <div class="title">
+          <h4>内容发布趋势</h4>
+          <div>
+            <span>10条</span>
+            <span>20条</span>
+          </div>
+        </div>
+        <div class="content">1234</div>
+      </div>
+      <div class="two_body">
+        <div class="title">
+          <h4>粉丝变化趋势</h4>
+        </div>
+        <div class="content">1234</div>
+      </div>
+      <div class="two_body">
+        <div class="title">
+          <h4>视频城市定位出现次数</h4>
+        </div>
+        <div class="content">1234</div>
+      </div>
+    </div>
+    <div class="word_cloud">
+      <div class="title">
+        <h4>用户内容词云</h4>
+      </div>
+      <div class="content">
+        <word-cloud />
+      </div>
+    </div>
+    <div class="user_info">
+      <div class="title">
+        <h4>用户虚实信息</h4>
+      </div>
+      <div class="content">我是内容</div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.user_portraits {
+  padding: 30px 20px 60px 20px;
+  background: #eef0f3;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  ::v-deep(h4) {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+  }
+
+  .right_detail_user,
+  .word_cloud,
+  .user_info {
+    background: #fff;
+    padding: 40px;
+  }
+
+  &_two {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+
+    .two_body {
+      width: 32.5%;
+      background: #fff;
+      padding: 25px 20px;
+
+      .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 25px;
+      }
+
+      .content {
+        height: 400px;
+      }
+    }
+  }
+
+  .word_cloud {
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .user_info {
+    margin-top: 30px;
+  }
+}
+</style>

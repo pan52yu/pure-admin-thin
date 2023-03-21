@@ -32,6 +32,7 @@ specifiers:
   cssnano: ^5.1.14
   dayjs: ^1.11.7
   echarts: ^5.4.1
+  echarts-wordcloud: ^2.1.0
   element-plus: ^2.2.32
   element-resize-detector: ^1.2.4
   eslint: ^8.8.0
@@ -92,6 +93,7 @@ dependencies:
   axios: 1.2.2
   dayjs: 1.11.7
   echarts: 5.4.1
+  echarts-wordcloud: registry.npmmirror.com/echarts-wordcloud/2.1.0_echarts@5.4.1
   element-plus: 2.2.32_vue@3.2.47
   element-resize-detector: 1.2.4
   js-cookie: 3.0.1
@@ -964,7 +966,7 @@ packages:
     engines: { node: ">= 14" }
     dependencies:
       "@intlify/shared": registry.npmmirror.com/@intlify/shared/9.2.2
-      source-map: 0.6.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
 
   /@intlify/shared/9.2.2:
     resolution:
@@ -1674,7 +1676,7 @@ packages:
       "@babel/parser": 7.21.2
       "@vue/shared": 3.2.47
       estree-walker: 2.0.2
-      source-map: 0.6.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
 
   /@vue/compiler-dom/3.2.47:
     resolution:
@@ -8119,6 +8121,22 @@ packages:
     version: 2.11.7
     dev: false
 
+  registry.npmmirror.com/echarts-wordcloud/2.1.0_echarts@5.4.1:
+    resolution:
+      {
+        integrity: sha512-Kt1JmbcROgb+3IMI48KZECK2AP5lG6bSsOEs+AsuwaWJxQom31RTNd6NFYI01E/YaI1PFZeueaupjlmzSQasjQ==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/echarts-wordcloud/-/echarts-wordcloud-2.1.0.tgz
+      }
+    id: registry.npmmirror.com/echarts-wordcloud/2.1.0
+    name: echarts-wordcloud
+    version: 2.1.0
+    peerDependencies:
+      echarts: ^5.0.1
+    dependencies:
+      echarts: 5.4.1
+    dev: false
+
   registry.npmmirror.com/fsevents/2.3.2:
     resolution:
       {
@@ -8156,4 +8174,3 @@ packages:
     name: source-map
     version: 0.6.1
     engines: { node: ">=0.10.0" }
-    dev: true

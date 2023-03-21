@@ -156,7 +156,7 @@ const timeAcp = ref(true);
   }
 
   .center {
-    flex: 1;
+    width: 380px;
     margin: 0 0 0 44px;
 
     div {
@@ -176,7 +176,7 @@ const timeAcp = ref(true);
   }
 
   .right {
-    width: 520px;
+    flex: 1;
 
     .right_content {
       display: flex;

@@ -20,6 +20,16 @@ export default {
         title: "视频详情",
         showLink: false
       }
+    },
+    {
+      path: "/tackPatrol/portrait/:id",
+      name: "UserPortrait",
+      component: () => import("@/views/TaskPatrol/userPortraits.vue"),
+      props: true,
+      meta: {
+        title: "用户画像",
+        showLink: false
+      }
     }
   ]
 } as RouteConfigsTable;

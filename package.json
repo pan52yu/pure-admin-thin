@@ -38,6 +38,7 @@
     "axios": "1.2.2",
     "dayjs": "^1.11.7",
     "echarts": "^5.4.1",
+    "echarts-wordcloud": "^2.1.0",
     "element-plus": "^2.2.32",
     "element-resize-detector": "^1.2.4",
     "js-cookie": "^3.0.1",

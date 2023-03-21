@@ -148,3 +148,35 @@ export const SORT_LIST = [
     value: "6"
   }
 ];
+
+// 用户信息
+export const USER_DETAIL = {
+  imgUrl: `https://picsum.photos/id/${Math.floor(Math.random() * 100)}/200/200`,
+  userAvatar: `https://picsum.photos/id/${Math.floor(
+    Math.random() * 100
+  )}/115/115`,
+  // 昵称
+  nickName: `昵称${Math.floor(Math.random() * 100)}`,
+  // 抖音号
+  tiktok: `${Math.floor(Math.random() * 100000)}`,
+  // 性别
+  gender: Math.random() > 0.5,
+  // 地区
+  city: `地区${Math.floor(Math.random() * 100)}`,
+  // 语言
+  language: `语言${Math.floor(Math.random() * 100)}`,
+  // 粉丝数
+  numberOfFans: `${Math.floor(Math.random() * 10000)}`,
+  // 获赞数
+  numberOfLikes: `${Math.floor(Math.random() * 10000)}`,
+  // 关注数
+  numberOfConcerns: `${Math.floor(Math.random() * 10000)}`,
+  // 作品数
+  numberOfWorks: `${Math.floor(Math.random() * 10000)}`,
+  // 实采视频
+  liveVideo: `${Math.floor(Math.random() * 10000)}`,
+  //   标签列表
+  labelList: [],
+  //   同城列表
+  sameCityList: []
+};
