@@ -29,6 +29,53 @@ const { options, selectchanged, handleChartClick } = useContentDistribution();
 onMounted(() => {
   getUserDetail();
 });
+// --------------------
+let checkList = [];
+const onload = data => {
+  console.log(data);
+};
+
+const updateList = data => {
+  checkList = data;
+};
+const column = [
+  {
+    type: "function",
+    label: "城市",
+    prop: "city",
+    callback: data => {
+      return `<a href="javaScript:;">${data.city}</a>`;
+    }
+  },
+  { label: "次数", prop: "num", width: 100 }
+];
+const tableData = [
+  {
+    city: "上海",
+    num: 100
+  },
+  {
+    city: "北京",
+    num: 99
+  },
+  {
+    city: "广州",
+    num: 98
+  },
+  {
+    city: "深圳",
+    num: 97
+  },
+  {
+    city: "杭州",
+    num: 96
+  },
+  {
+    city: "成都",
+    num: 95
+  }
+];
+// ---------------------------
 </script>
 
 <template>
@@ -65,7 +112,15 @@ onMounted(() => {
           <h4>视频城市定位出现次数</h4>
         </div>
         <div class="content">
-          <my-table />
+          <my-table
+            :column="column"
+            :check-list="checkList"
+            index
+            on-load
+            @onload="onload"
+            @updateList="updateList"
+            :table-data="tableData"
+          />
         </div>
       </div>
     </div>
@@ -82,7 +137,15 @@ onMounted(() => {
         <h4>用户虚实信息</h4>
       </div>
       <div class="content">
-        <my-table />
+        <my-table
+          :column="column"
+          :check-list="checkList"
+          index
+          on-load
+          @onload="onload"
+          @updateList="updateList"
+          :table-data="tableData"
+        />
       </div>
     </div>
   </div>
@@ -144,6 +207,10 @@ onMounted(() => {
 
   .user_info {
     margin-top: 30px;
+  }
+
+  ::v-deep(a) {
+    color: #1890ff;
   }
 }
 </style>

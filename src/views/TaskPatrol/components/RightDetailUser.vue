@@ -199,6 +199,12 @@ const timeAcp = ref(true);
     .right_two {
       margin: 20px 0;
     }
+
+    .right_three {
+      span {
+        cursor: pointer;
+      }
+    }
   }
 }
 </style>
