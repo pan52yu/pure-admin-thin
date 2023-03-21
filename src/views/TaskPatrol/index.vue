@@ -210,7 +210,6 @@ const allMarkRead = () => {
 const taskPatrolList = ref<ListType[]>([]);
 const taskTotal = ref(666);
 const getTaskList = (obj = { page: 1, limit: 10 }) => {
-  console.log(12345);
   stationFrom.value.page = obj.page;
   stationFrom.value.size = obj.limit;
   taskPatrolList.value = [];

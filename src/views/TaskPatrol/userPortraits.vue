@@ -3,6 +3,9 @@ import RightDetailUser from "@/views/TaskPatrol/components/RightDetailUser.vue";
 import { onMounted, ref } from "vue";
 import { USER_DETAIL } from "@/utils/enum";
 import WordCloud from "@/components/WordCloud.vue";
+import MyTable from "@/components/MyTable/index.vue";
+import VCharts from "@/components/MyEcharts/v-charts.vue";
+import { useContentDistribution } from "@/views/TaskPatrol/hook";
 
 defineOptions({
   name: "userPortraits"
@@ -20,6 +23,8 @@ const getUserDetail = () => {
     );
   }
 };
+
+const { options, selectchanged, handleChartClick } = useContentDistribution();
 
 onMounted(() => {
   getUserDetail();
@@ -39,19 +44,29 @@ onMounted(() => {
             <span>20条</span>
           </div>
         </div>
-        <div class="content">1234</div>
+        <div class="content">
+          <v-charts
+            :options="options"
+            @selectchanged="selectchanged"
+            @chart-click="handleChartClick"
+          />
+        </div>
       </div>
       <div class="two_body">
         <div class="title">
           <h4>粉丝变化趋势</h4>
         </div>
-        <div class="content">1234</div>
+        <div class="content">
+          <v-charts :options="options" />
+        </div>
       </div>
       <div class="two_body">
         <div class="title">
           <h4>视频城市定位出现次数</h4>
         </div>
-        <div class="content">1234</div>
+        <div class="content">
+          <my-table />
+        </div>
       </div>
     </div>
     <div class="word_cloud">
@@ -66,7 +81,9 @@ onMounted(() => {
       <div class="title">
         <h4>用户虚实信息</h4>
       </div>
-      <div class="content">我是内容</div>
+      <div class="content">
+        <my-table />
+      </div>
     </div>
   </div>
 </template>

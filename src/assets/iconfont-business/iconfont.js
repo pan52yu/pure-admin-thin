@@ -20,7 +20,7 @@
             "<style>.svgfont {display: inline-block;width: 1em;height: 1em;fill: currentColor;vertical-align: -0.1em;font-size:16px;}</style>"
           );
         } catch (c) {
-          console && console.log(c);
+          console.log(c);
         }
       }
       (l = function () {
@@ -55,9 +55,11 @@
                 ((o.onreadystatechange = null), n());
             }));
     }
+
     function n() {
       h || ((h = !0), e());
     }
+
     function v() {
       try {
         o.documentElement.doScroll("left");
