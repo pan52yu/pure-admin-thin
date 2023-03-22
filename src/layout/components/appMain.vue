@@ -139,7 +139,7 @@ const transitionMain = defineComponent({
 .app-main {
   width: 100%;
   min-width: 1440px;
-  //height: 100vh;
+  height: 100vh;
   position: relative;
   overflow-x: hidden;
 }

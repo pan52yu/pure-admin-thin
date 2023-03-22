@@ -2,7 +2,6 @@
 import ArrowRight from "@iconify-icons/ep/arrow-right-bold";
 import ArrowLeft from "@iconify-icons/ep/arrow-left-bold";
 import { onMounted, ref } from "vue";
-import { useWindowScroll } from "@vueuse/core";
 import CardItem from "@/layout/components/CardCom/CardItem.vue";
 import { useFavorites } from "@/store/modules/favorites";
 
@@ -10,8 +9,6 @@ defineOptions({
   name: "MyFavorites"
 });
 const isOpen = ref(false);
-const { y } = useWindowScroll();
-console.log(y.value);
 const labelValue = ref("0");
 const labelList = [
   {
