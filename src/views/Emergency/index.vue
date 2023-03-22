@@ -1,8 +1,49 @@
 <script setup lang="ts">
 import EmergencyItem from "@/views/Emergency/components/EmergencyItem.vue";
+import { onMounted, ref } from "vue";
+import { EmergencyType } from "@/types/data";
 
 defineOptions({
   name: "Emergency"
+});
+
+// 进行中的突发事件
+const emergencyList = ref<EmergencyType[]>([]);
+
+// 获取进行中的突发事件
+const getEmergencyList = () => {
+  const getRandomTime = () => {
+    const year = Math.floor(Math.random() * 2) + 2021;
+    const month = Math.floor(Math.random() * 12) + 1;
+    const day = Math.floor(Math.random() * 28) + 1;
+    const hour = Math.floor(Math.random() * 24);
+    const minute = Math.floor(Math.random() * 60);
+    const second = Math.floor(Math.random() * 60);
+    return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+  };
+  for (let i = 0, len = 6; i < len; i++) {
+    const start = getRandomTime();
+    const finish = getRandomTime();
+    const end = getRandomTime();
+    const diff = new Date(end).getTime() - new Date(start).getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    emergencyList.value.push({
+      id: Math.floor(Math.random() * 1000),
+      name: "任务名称" + Math.floor(Math.random() * 100),
+      userNum: Math.floor(Math.random() * 1000),
+      videoNum: Math.floor(Math.random() * 1000),
+      startTime: start,
+      endTime: `${days}天${hours}小时${minutes}分钟`,
+      finishTime: finish,
+      status: Math.random() > 0.5
+    });
+  }
+};
+
+onMounted(() => {
+  getEmergencyList();
 });
 // 查看全部
 const seeAll = () => {
@@ -28,8 +69,13 @@ const seeAll = () => {
       </div>
       <div class="emergency_body_content">
         <el-row :gutter="30">
-          <el-col class="mb-8" :span="8" v-for="item in 6" :key="item">
-            <EmergencyItem />
+          <el-col
+            class="mb-8"
+            :span="8"
+            v-for="item in emergencyList"
+            :key="item.id"
+          >
+            <EmergencyItem :item="item" />
           </el-col>
         </el-row>
       </div>
@@ -38,8 +84,13 @@ const seeAll = () => {
       </div>
       <div class="emergency_body_content">
         <el-row :gutter="30">
-          <el-col class="mb-8" :span="8" v-for="item in 6" :key="item">
-            <EmergencyItem />
+          <el-col
+            class="mb-8"
+            :span="8"
+            v-for="item in emergencyList"
+            :key="item.id"
+          >
+            <EmergencyItem :item="item" is-end />
           </el-col>
         </el-row>
       </div>

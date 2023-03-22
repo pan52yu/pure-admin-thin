@@ -1,6 +1,19 @@
 <script lang="ts" setup>
+import { EmergencyType } from "@/types/data";
+
 defineOptions({
   name: "EmergencyItem"
+});
+defineProps({
+  item: {
+    type: Object as PropType<EmergencyType>,
+    required: true
+  },
+  //   是否已结束
+  isEnd: {
+    type: Boolean,
+    default: false
+  }
 });
 </script>
 
@@ -10,31 +23,38 @@ defineOptions({
       <div class="emergency_item_map">地图</div>
       <div class="text-base p-2">
         <div class="flex justify-between items-center mt-4 mb-0.5">
-          <h4 class="text-xl">XXX任务名称</h4>
+          <h4 class="text-xl">{{ item.name }}</h4>
           <div class="text-sm flex items-center">
             <a class="mr-4 is_link" href="javascript:void(0);">分析报告</a>
-            <el-button type="primary" size="small">管理</el-button>
+            <el-button :type="isEnd ? '' : 'primary'" size="small"
+              >管理
+            </el-button>
           </div>
         </div>
         <div class="item_content p-2">
           <div>
             定位用户
-            <span class="link_color">9999</span>
+            <span class="link_color">{{ item.userNum }}</span>
             &nbsp;&nbsp;&nbsp;已采视频
-            <span class="link_color">9999</span>
+            <span class="link_color">{{ item.videoNum }}</span>
             &nbsp;&nbsp;&nbsp;
-            <span class="loader" />
+            <span v-if="item.status" class="loader" />
+            <font-icon v-else icon="icon-duigou" style="color: #52c41a" />
           </div>
           <div>
             开始时间
-            <strong>2023-01-09 23:23:00</strong>
+            <strong>{{ item.startTime }}</strong>
           </div>
           <div>
-            <div>
+            <div v-if="!isEnd">
               截止时间
-              <strong>x天x小时x分钟</strong>
+              <strong>{{ item.endTime }}</strong>
             </div>
-            <div>
+            <div v-else>
+              结束时间
+              <strong>{{ item.finishTime }}</strong>
+            </div>
+            <div v-if="!isEnd">
               <el-button size="small">延长</el-button>
               <el-button size="small">停止</el-button>
             </div>

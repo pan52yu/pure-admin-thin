@@ -32,3 +32,23 @@ export type ListType = {
   // 关键词
   keywords?: string[];
 };
+
+// 定义突发事件类型
+export type EmergencyType = {
+  // id
+  id: number;
+  // 任务名称
+  name: string;
+  // 定位用户数量
+  userNum: number;
+  // 采集视频数量
+  videoNum: number;
+  // 开始时间
+  startTime: string;
+  //   截止时间
+  endTime?: string;
+  // 结束时间
+  finishTime?: string;
+  // 状态
+  status: boolean;
+};
