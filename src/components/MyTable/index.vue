@@ -87,6 +87,9 @@ const column = [
 <script setup>
 import { onMounted, defineEmits } from "vue";
 
+defineOptions({
+  name: "MyTable"
+});
 const emit = defineEmits(["onload", "updateList"]);
 
 const props = defineProps({
@@ -117,3 +120,8 @@ const api = () => {
   props.onLoad && emit("onload", "后台数据");
 };
 </script>
+<style scoped>
+::v-deep(a) {
+  color: #1f6bdf;
+}
+</style>

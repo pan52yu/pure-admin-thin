@@ -8,14 +8,6 @@ defineOptions({
   name: "CardPagination"
 });
 
-// 然后将element-ui中pagination选项改掉
-zhLocale.el.pagination = {
-  goto: "跳转到",
-  pagesize: "/页",
-  total: `共 {total} 个视频`,
-  pageClassifier: "",
-  deprecationWarning: ""
-};
 const props = defineProps({
   total: {
     required: true,
@@ -49,12 +41,23 @@ const props = defineProps({
     default: true
   }
 });
+const emit = defineEmits(["pagination", "update:page", "update:limit"]);
+
+// 然后将element-ui中pagination选项改掉
+zhLocale.el.pagination = {
+  goto: "跳转到",
+  pagesize: "/页",
+  total: `共 {total} 个视频`,
+  pageClassifier: "",
+  deprecationWarning: ""
+};
 const currentPage = computed({
   get() {
     return props.page;
   },
   set(newValue) {
     emit("update:page", newValue);
+    console.log(newValue);
   }
 });
 const pageSize = computed({
@@ -66,7 +69,6 @@ const pageSize = computed({
   }
 });
 
-const emit = defineEmits(["pagination", "update:page", "update:limit"]);
 const handleSizeChange = val => {
   emit("pagination", { page: currentPage.value, limit: val });
 };

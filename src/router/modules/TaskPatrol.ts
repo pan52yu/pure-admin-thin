@@ -31,11 +31,20 @@ export default {
       }
     },
     {
+      path: "/taskPatrol/warnTask",
+      name: "WarnTask",
+      component: () => import("@/views/TaskPatrol/WarnTask/index.vue"),
+      meta: {
+        title: "预警任务"
+      }
+    },
+    {
       path: "/taskPatrol/addWarnTask",
       name: "AddWarnTask",
-      component: () => import("@/views/TaskPatrol/addWarnTask.vue"),
+      component: () => import("@/views/TaskPatrol/WarnTask/addWarnTask.vue"),
       meta: {
-        title: "添加预警任务"
+        title: "添加预警任务",
+        showLink: false
       }
     }
   ]
