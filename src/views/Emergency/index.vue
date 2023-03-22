@@ -2,10 +2,17 @@
 import EmergencyItem from "@/views/Emergency/components/EmergencyItem.vue";
 import { onMounted, ref } from "vue";
 import { EmergencyType } from "@/types/data";
+import { useRouter } from "vue-router";
 
 defineOptions({
   name: "Emergency"
 });
+
+const router = useRouter();
+// 去添加突发事件
+const addEmergency = () => {
+  router.push("/emergency/add");
+};
 
 // 进行中的突发事件
 const emergencyList = ref<EmergencyType[]>([]);
@@ -60,7 +67,7 @@ const seeAll = () => {
       </div>
       <div class="emergency_top_r">
         <span>进行中 3 / 剩余可添加 0 </span>
-        <el-button type="primary">添加</el-button>
+        <el-button type="primary" @click="addEmergency">添加</el-button>
       </div>
     </div>
     <div class="emergency_body">

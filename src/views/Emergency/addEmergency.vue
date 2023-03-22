@@ -2,10 +2,10 @@
 import { ref } from "vue";
 
 defineOptions({
-  name: "addWarnTask"
+  name: "addEmergency"
 });
-const addWarnTaskFrom = ref({
-  //   任务名称
+const addEmergencyFrom = ref({
+  //   突发事件任务名称
   taskName: "",
   //   开始时间
   startTime: "",
@@ -50,7 +50,7 @@ const isIndeterminate = ref(true);
 const cities = ["Shanghai", "Beijing", "Guangzhou", "Shenzhen"];
 
 const checkAllSameCityChange = (val: boolean) => {
-  addWarnTaskFrom.value.sameCityList = val ? cities : [];
+  addEmergencyFrom.value.sameCityList = val ? cities : [];
   isIndeterminate.value = false;
 };
 const checkedCitiesChange = (value: string[]) => {
@@ -65,7 +65,7 @@ const isIndeterminateUserGroup = ref(true);
 const userGroups = ["组1", "组2", "组3", "组4"];
 
 const checkAllUserGroupChange = (val: boolean) => {
-  addWarnTaskFrom.value.userGroupList = val ? userGroups : [];
+  addEmergencyFrom.value.userGroupList = val ? userGroups : [];
   isIndeterminateUserGroup.value = false;
 };
 const checkedUserGroupsChange = (value: string[]) => {
@@ -91,7 +91,7 @@ const videoPublishCycles = [
 // 是否自定义发布周期时间
 const isCustomVideoPublishCycle = ref(false);
 const checkAllVideoPublishCycleChange = (val: boolean) => {
-  addWarnTaskFrom.value.videoPublishCycleList = val ? videoPublishCycles : [];
+  addEmergencyFrom.value.videoPublishCycleList = val ? videoPublishCycles : [];
   isIndeterminateVideoPublishCycle.value = false;
 };
 const checkedVideoPublishCyclesChange = (value: string[]) => {
@@ -114,29 +114,29 @@ const dingDingPhone = ref("");
 </script>
 
 <template>
-  <div class="add_warn_task">
-    <header>新建预警任务</header>
-    <div class="add_warn_task_form">
+  <div class="add_emergency">
+    <header>新建突发事件区域采集</header>
+    <div class="add_emergency_form">
       <!--   任务启用   -->
       <div class="form_top">
         <div class="title">任务启用</div>
       </div>
-      <!--   任务名称   -->
+      <!--   突发事件任务名称   -->
       <div class="item">
-        <span>任务名称</span>
-        <el-input v-model="addWarnTaskFrom.taskName" />
+        <span>突发事件任务名称</span>
+        <el-input v-model="addEmergencyFrom.taskName" />
       </div>
       <!--   开始结束时间   -->
       <div class="item">
         <span>开始时间</span>
         <el-date-picker
-          v-model="addWarnTaskFrom.startTime"
+          v-model="addEmergencyFrom.startTime"
           type="datetime"
           placeholder="请选择开始时间"
         />
         <span style="margin-left: 100px">结束时间</span>
         <el-date-picker
-          v-model="addWarnTaskFrom.endTime"
+          v-model="addEmergencyFrom.endTime"
           type="datetime"
           placeholder="请选择开始时间"
         />
@@ -155,7 +155,7 @@ const dingDingPhone = ref("");
         <div class="item">
           <span>过滤来自同城</span>
           <el-switch
-            v-model="addWarnTaskFrom.filterSameCity"
+            v-model="addEmergencyFrom.filterSameCity"
             inline-prompt
             active-text="ON"
             inactive-text="OFF"
@@ -168,7 +168,7 @@ const dingDingPhone = ref("");
             >全部属地同城
           </el-checkbox>
           <el-checkbox-group
-            v-model="addWarnTaskFrom.sameCityList"
+            v-model="addEmergencyFrom.sameCityList"
             @change="checkedCitiesChange"
           >
             <el-checkbox v-for="city in cities" :key="city" :label="city"
@@ -181,7 +181,7 @@ const dingDingPhone = ref("");
         <div class="item">
           <span>过滤来自用户组</span>
           <el-switch
-            v-model="addWarnTaskFrom.filterUserGroup"
+            v-model="addEmergencyFrom.filterUserGroup"
             inline-prompt
             active-text="ON"
             inactive-text="OFF"
@@ -194,7 +194,7 @@ const dingDingPhone = ref("");
             >全部分组
           </el-checkbox>
           <el-checkbox-group
-            v-model="addWarnTaskFrom.userGroupList"
+            v-model="addEmergencyFrom.userGroupList"
             @change="checkedUserGroupsChange"
           >
             <el-checkbox
@@ -209,7 +209,7 @@ const dingDingPhone = ref("");
         <div class="item">
           <span>视频发布周期</span>
           <el-switch
-            v-model="addWarnTaskFrom.videoPublishCycle"
+            v-model="addEmergencyFrom.videoPublishCycle"
             inline-prompt
             active-text="ON"
             inactive-text="OFF"
@@ -221,7 +221,7 @@ const dingDingPhone = ref("");
             >全部分组
           </el-checkbox>
           <el-checkbox-group
-            v-model="addWarnTaskFrom.videoPublishCycleList"
+            v-model="addEmergencyFrom.videoPublishCycleList"
             @change="checkedVideoPublishCyclesChange"
           >
             <el-checkbox
@@ -236,16 +236,39 @@ const dingDingPhone = ref("");
           </el-checkbox>
         </div>
       </div>
-      <!--   设置预警数据范围   -->
+      <!--   设置采集区域范围   -->
       <div class="form_top">
         <div class="title">
-          <div>设置预警数据范围<span>（可选项）</span></div>
+          <div>设置采集区域范围</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="flex-1">
+          <div class="flex-bc">
+            <div>覆盖范围: 1公里 5 10 30 50</div>
+            <a class="is_link text-sm" href="javascript:void(0);">全屏设置</a>
+          </div>
+          <div class="map flex-c bg-slate-200 h-96 my-3">地图</div>
+          <p class="text-sm">
+            设好范围后移动坐标进行定位，注意：大致估算事件波及范围，区域越小越精准
+          </p>
+          <p class="text-sm mt-2.5">
+            <strong
+              >经度 119.806037:119.998048 维度119.806037:119.998048</strong
+            >
+          </p>
+        </div>
+      </div>
+      <!--   设置采集关键词   -->
+      <div class="form_top">
+        <div class="title">
+          <div>设置采集关键词<span>（可选项）</span></div>
         </div>
       </div>
       <div class="item">
         <span>关键词</span>
         <div class="item_l">
-          <el-input v-model="addWarnTaskFrom.keyword" />
+          <el-input v-model="addEmergencyFrom.keyword" />
           <i><strong>·</strong> 填一个词或组合词，等同于在抖音内搜索</i>
         </div>
       </div>
@@ -262,13 +285,13 @@ const dingDingPhone = ref("");
         <span>匹配模式</span>
         <div class="match_the_pattern">
           <el-button
-            :type="addWarnTaskFrom.matchMode === '1' ? 'primary' : ''"
-            @click="addWarnTaskFrom.matchMode = '1'"
+            :type="addEmergencyFrom.matchMode === '1' ? 'primary' : ''"
+            @click="addEmergencyFrom.matchMode = '1'"
             >简单模式
           </el-button>
           <el-button
-            :type="addWarnTaskFrom.matchMode === '2' ? 'primary' : ''"
-            @click="addWarnTaskFrom.matchMode = '2'"
+            :type="addEmergencyFrom.matchMode === '2' ? 'primary' : ''"
+            @click="addEmergencyFrom.matchMode = '2'"
             >高级模式
           </el-button>
         </div>
@@ -278,7 +301,7 @@ const dingDingPhone = ref("");
         <div class="item_l">
           <el-input
             class="one"
-            v-model="addWarnTaskFrom.keywordOr"
+            v-model="addEmergencyFrom.keywordOr"
             type="textarea"
             :autosize="{ minRows: 4, maxRows: 8 }"
           />
@@ -295,7 +318,7 @@ const dingDingPhone = ref("");
         <div class="item_l">
           <el-input
             class="two"
-            v-model="addWarnTaskFrom.keywordAnd1"
+            v-model="addEmergencyFrom.keywordAnd1"
             type="textarea"
             :autosize="{ minRows: 4, maxRows: 8 }"
           />
@@ -309,7 +332,7 @@ const dingDingPhone = ref("");
         <div class="item_l">
           <el-input
             class="two"
-            v-model="addWarnTaskFrom.keywordAnd2"
+            v-model="addEmergencyFrom.keywordAnd2"
             type="textarea"
             :autosize="{ minRows: 4, maxRows: 8 }"
           />
@@ -323,7 +346,7 @@ const dingDingPhone = ref("");
         <div class="item_l">
           <el-input
             class="three"
-            v-model="addWarnTaskFrom.keywordNot"
+            v-model="addEmergencyFrom.keywordNot"
             type="textarea"
             :autosize="{ minRows: 4, maxRows: 8 }"
           />
@@ -339,7 +362,7 @@ const dingDingPhone = ref("");
             开启推送
             <el-switch
               class="ml-16"
-              v-model="addWarnTaskFrom.openPush"
+              v-model="addEmergencyFrom.openPush"
               inline-prompt
               active-text="ON"
               inactive-text="OFF"
@@ -347,15 +370,15 @@ const dingDingPhone = ref("");
           </div>
         </div>
       </div>
-      <div class="item" v-show="addWarnTaskFrom.openPush">
+      <div class="item" v-show="addEmergencyFrom.openPush">
         <span>推送到</span>
         <div class="item_l">
           <div class="dingding">
             <el-checkbox
-              v-model="addWarnTaskFrom.pushToDingDing"
+              v-model="addEmergencyFrom.pushToDingDing"
               label="钉钉群消息"
             />
-            <div class="ding_content" v-show="addWarnTaskFrom.pushToDingDing">
+            <div class="ding_content" v-show="addEmergencyFrom.pushToDingDing">
               <h4>请完成以下步骤</h4>
               <p>1.请输入接收通知消息的钉钉账号注册手机号，当有消息将@您</p>
               <el-input v-model="dingDingPhone" placeholder="请输入手机号" />
@@ -368,10 +391,10 @@ const dingDingPhone = ref("");
           </div>
         </div>
       </div>
-      <div class="item" v-show="addWarnTaskFrom.openPush">
+      <div class="item" v-show="addEmergencyFrom.openPush">
         <span>推送间隔</span>
         <div class="item_l">
-          <el-radio-group v-model="addWarnTaskFrom.pushInterval">
+          <el-radio-group v-model="addEmergencyFrom.pushInterval">
             <el-radio label="1">立即</el-radio>
             <el-radio label="2">1小时</el-radio>
             <el-radio label="3">6小时</el-radio>
@@ -391,7 +414,7 @@ const dingDingPhone = ref("");
 </template>
 
 <style lang="scss" scoped>
-.add_warn_task {
+.add_emergency {
   background: #fff;
 
   header {
@@ -425,13 +448,13 @@ const dingDingPhone = ref("");
       display: flex;
 
       span {
-        width: 150px;
+        width: 170px;
         font-size: 20px;
         margin-right: 20px;
       }
 
       .el-input {
-        width: calc(100% - 170px);
+        width: calc(100% - 190px);
       }
 
       .el-switch {
