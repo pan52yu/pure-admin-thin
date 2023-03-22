@@ -121,6 +121,7 @@ const tableData = [
             @updateList="updateList"
             :table-data="tableData"
           />
+          <div class="all">全部</div>
         </div>
       </div>
     </div>
@@ -193,6 +194,13 @@ const tableData = [
 
       .content {
         height: 400px;
+
+        .all {
+          font-size: 14px;
+          color: #1890ff;
+          cursor: pointer;
+          margin: 20px 0 0 60px;
+        }
       }
     }
   }

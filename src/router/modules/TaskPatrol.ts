@@ -25,10 +25,17 @@ export default {
       path: "/tackPatrol/portrait/:id",
       name: "UserPortrait",
       component: () => import("@/views/TaskPatrol/userPortraits.vue"),
-      props: true,
       meta: {
         title: "用户画像",
         showLink: false
+      }
+    },
+    {
+      path: "/taskPatrol/addWarnTask",
+      name: "AddWarnTask",
+      component: () => import("@/views/TaskPatrol/addWarnTask.vue"),
+      meta: {
+        title: "添加预警任务"
       }
     }
   ]
