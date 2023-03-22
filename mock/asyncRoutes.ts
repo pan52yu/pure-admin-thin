@@ -20,7 +20,8 @@ const permissionRouter = {
       name: "PermissionPage",
       meta: {
         title: "menus.permissionPage",
-        roles: ["admin", "common"]
+        roles: ["admin", "common"],
+        showLink: false
       }
     },
     {
@@ -29,7 +30,8 @@ const permissionRouter = {
       meta: {
         title: "menus.permissionButton",
         roles: ["admin", "common"],
-        auths: ["btn_add", "btn_edit", "btn_delete"]
+        auths: ["btn_add", "btn_edit", "btn_delete"],
+        showLink: false
       }
     }
   ]

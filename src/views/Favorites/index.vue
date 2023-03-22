@@ -1,11 +1,22 @@
 <script setup lang="ts">
+import VideoCollection from "@/views/Favorites/components/videoCollection.vue";
+
 defineOptions({
   name: "Favorites"
 });
 </script>
 
 <template>
-  <div>收藏夹</div>
+  <div class="p-4">
+    <el-tabs type="border-card">
+      <el-tab-pane label="视频收藏">
+        <video-collection />
+      </el-tab-pane>
+      <el-tab-pane label="视频下载">视频下载</el-tab-pane>
+      <el-tab-pane label="推送记录">推送记录</el-tab-pane>
+      <el-tab-pane label="分析报告">分析报告</el-tab-pane>
+    </el-tabs>
+  </div>
 </template>
 
 <style scoped></style>
