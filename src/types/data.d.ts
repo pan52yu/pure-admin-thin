@@ -58,3 +58,43 @@ export type EmergencyType = {
   //   覆盖点半径
   radius?: number;
 };
+
+// 定义视频收藏类型
+export type FavoriteType = {
+  // id
+  id: number;
+  // 视频URL
+  videoUrl: string;
+  //   用户名称
+  userName: string;
+  //   用户简介
+  userIntroduction: string;
+  //   命中词列表
+  hitList: string[];
+  //   同城列表
+  sameCityList: string[];
+  //   标签列表
+  labelList: string[];
+  //   发布时间
+  releaseTime: string;
+  //   入库时间
+  playNum: string;
+  //   点赞数
+  likeNum: number;
+  //   评论数
+  commentNum: number;
+  //   转发数
+  forwardNum: number;
+  //   视频来源
+  videoSource: string;
+  //   视频状态
+  videoStatus: number;
+  //   aweme_id
+  awemeId: number;
+  //   是否收藏
+  isCollection: boolean;
+  //   是否被选中
+  isSelected: boolean;
+  //   是否已下载视频
+  isDownload: boolean;
+};

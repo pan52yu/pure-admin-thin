@@ -104,7 +104,7 @@ const shortcuts = [
         <el-button size="small" type="primary">查询</el-button>
       </div>
       <div>
-        <favorites-item />
+        <favorites-item is-video-collection />
       </div>
     </div>
   </div>

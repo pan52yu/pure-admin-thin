@@ -180,3 +180,42 @@ export const USER_DETAIL = {
   //   同城列表
   sameCityList: []
 };
+
+// 枚举视频收藏右侧的视频信息
+export const VIDEO_INFO = [
+  {
+    label: "发布时间",
+    value: "releaseTime"
+  },
+  {
+    label: "入库时间",
+    value: "playNum"
+  },
+  {
+    label: "点赞",
+    value: "likeNum",
+    icon: "icon-dianzan"
+  },
+  {
+    label: "评论",
+    value: "commentNum",
+    icon: "icon-pinglun"
+  },
+  {
+    label: "转发",
+    value: "forwardNum",
+    icon: "icon-zhuanfa"
+  },
+  {
+    label: "视频来源",
+    value: "videoSource"
+  },
+  {
+    label: "视频状态",
+    value: "videoStatus"
+  },
+  {
+    label: "aweme_id",
+    value: "awemeId"
+  }
+];

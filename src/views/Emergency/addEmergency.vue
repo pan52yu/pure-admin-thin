@@ -312,7 +312,9 @@ const fullScreenChange = () => {
             class="map flex-c bg-slate-200 my-3"
             :class="{ full_screen: fullScreen }"
           >
+            <!--      地图      -->
             <my-map :item="mapForm" draggable editable />
+            <!--      全屏状态下显示      -->
             <el-button v-show="fullScreen" @click="fullScreenChange"
               >退出全屏
             </el-button>
