@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { getRandomTime } from "@/utils/tools";
 import { FavoriteType } from "@/types/data";
 import { VIDEO_INFO } from "@/utils/enum";
@@ -20,8 +20,28 @@ defineProps({
   }
 });
 // 全选标签
-const checkAll = ref(false);
+const checkAll = computed({
+  get() {
+    const selectedCount = videoDetail.value.filter(
+      item => item.isSelected
+    ).length;
+    if (selectedCount === 0) {
+      return false; // 没有选中
+    } else if (selectedCount === videoDetail.value.length) {
+      return true; // 全部选中
+    } else {
+      return null; // 部分选中
+    }
+  },
+  set(val) {
+    // 全选或者取消全选
+    videoDetail.value.forEach(item => {
+      item.isSelected = val;
+    });
+  }
+});
 
+// 收藏夹视频列表
 const videoDetail = ref<FavoriteType[]>([]);
 
 // 枚举视频收藏右侧的视频信息
@@ -54,6 +74,12 @@ const getVideoDetail = () => {
     });
   }
 };
+// 视频信息总数
+const videoDetailTotal = computed(() => videoDetail.value.length);
+// 选中的视频信息数量
+const videoDetailSelected = computed(() => {
+  return videoDetail.value.filter(item => item.isSelected).length;
+});
 onMounted(() => {
   getVideoDetail();
 });
@@ -63,8 +89,10 @@ onMounted(() => {
   <div class="favorites_item">
     <header class="flex-bc px-6">
       <div>
-        <el-checkbox v-model="checkAll" />
-        <span class="ml-4">共 1 条 已选 0 条</span>
+        <el-checkbox v-model="checkAll" :indeterminate="checkAll === null" />
+        <span class="ml-4"
+          >共 {{ videoDetailTotal }} 条 已选 {{ videoDetailSelected }} 条</span
+        >
       </div>
       <div>
         <el-button>修改标签</el-button>
@@ -153,8 +181,8 @@ onMounted(() => {
           <el-button v-else>保存视频</el-button>
           <el-button>保存报告</el-button>
           <el-button v-if="isVideoDownload" type="info" plain
-            >删除记录</el-button
-          >
+            >删除记录
+          </el-button>
         </div>
       </div>
     </div>
