@@ -494,7 +494,7 @@ onUnmounted(() => {
               <el-button>
                 <IconifyIconOffline
                   :icon="RefreshRight"
-                  style="font-size: 18px; margin-right: 10px"
+                  style="margin-right: 10px; font-size: 18px"
                 />
                 新检索到<span>999</span>条，点击加载
               </el-button>
@@ -555,16 +555,16 @@ onUnmounted(() => {
 
   .demo-tabs > .el-tabs__content {
     padding: 32px;
-    color: #6b778c;
-    font-size: 32px;
     font-weight: 600;
+    font-size: 32px;
+    color: #6b778c;
   }
 
   ::v-deep(.el-tabs__header) {
-    background: #d9d9d9;
-    padding: 15px 0 0 15px;
     margin: 0;
+    padding: 15px 0 0 15px;
     height: 56px;
+    background: #d9d9d9;
 
     .el-tabs__item {
       background: #fff;
@@ -587,14 +587,14 @@ onUnmounted(() => {
   }
 
   .task_patrol {
-    background: #f5f5f5;
     padding: 20px 35px;
+    background: #f5f5f5;
     color: #595959;
 
     .no_open {
-      opacity: 0;
-      height: 0;
       margin: 3px 0;
+      height: 0;
+      opacity: 0;
     }
 
     div {
@@ -609,10 +609,10 @@ onUnmounted(() => {
       margin-bottom: 5px;
 
       div {
-        width: 25%;
-        font-size: 16px;
         display: flex;
         align-items: center;
+        width: 25%;
+        font-size: 16px;
 
         .el-select,
         .el-input {
@@ -643,17 +643,17 @@ onUnmounted(() => {
 
       span {
         display: inline-block;
+        margin: 0 5px;
         width: 43px;
         height: 24px;
-        text-align: center;
-        margin: 0 5px;
         cursor: pointer;
+        text-align: center;
       }
 
       .active {
-        color: #fff;
-        background: #1890ff;
         border-radius: 5px;
+        background: #1890ff;
+        color: #fff;
       }
 
       div {
@@ -689,19 +689,19 @@ onUnmounted(() => {
       }
 
       span {
+        margin: 0 10px;
+        cursor: pointer;
         font-size: 14px;
         color: #595959;
-        cursor: pointer;
-        margin: 0 10px;
       }
 
       .common_search {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
         font-weight: 700;
         font-size: 14px;
         color: #595959;
-        margin-left: 20px;
-        display: flex;
-        align-items: center;
       }
     }
 
@@ -714,9 +714,9 @@ onUnmounted(() => {
       }
 
       span {
-        color: #1890ff;
-        cursor: pointer;
         margin-left: 10px;
+        cursor: pointer;
+        color: #1890ff;
       }
 
       .active {
@@ -726,8 +726,8 @@ onUnmounted(() => {
   }
 
   .task_patrol_body {
-    background: #fff;
     padding: 20px 30px 130px;
+    background: #fff;
   }
 }
 </style>

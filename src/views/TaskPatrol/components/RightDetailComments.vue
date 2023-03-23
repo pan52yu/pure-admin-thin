@@ -111,8 +111,8 @@ onMounted(() => {
     &_item {
       display: flex;
       align-items: center;
-      border-bottom: 1px solid #e7e7e7;
       padding: 20px 0;
+      border-bottom: 1px solid #e7e7e7;
 
       .el-avatar {
         margin-right: 25px;

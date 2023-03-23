@@ -212,10 +212,10 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     padding: 30px 100px 40px 60px;
-    height: 50px;
-    border-radius: 5px;
 
     border-bottom: 1px solid #f0f0f0;
+    border-radius: 5px;
+    height: 50px;
 
     h1 {
       font-size: 30px;
@@ -227,10 +227,10 @@ onMounted(() => {
     padding: 30px 30px 200px 60px;
 
     .el-col {
-      color: #595959;
-      font-size: 16px;
       display: flex;
       align-items: center;
+      font-size: 16px;
+      color: #595959;
 
       span {
         width: 100px;

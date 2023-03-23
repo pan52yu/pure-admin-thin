@@ -178,15 +178,15 @@ const seeAll = () => {
     justify-content: space-between;
     align-items: center;
     padding: 30px 50px 10px 50px;
-    font-size: 14px;
     border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
 
     &_l {
       .title {
-        font-size: 30px;
-        font-weight: 700;
-        color: #1f6bdf;
         margin-right: 30px;
+        font-weight: 700;
+        font-size: 30px;
+        color: #1f6bdf;
       }
 
       span {
@@ -196,8 +196,8 @@ const seeAll = () => {
 
     &_r {
       span {
-        color: #595959;
         margin-right: 30px;
+        color: #595959;
       }
     }
   }
@@ -206,13 +206,13 @@ const seeAll = () => {
     padding: 30px 50px 100px 50px;
 
     &_title {
-      border-bottom: 1px solid #f0f0f0;
       margin-bottom: 20px;
       padding-bottom: 15px;
+      border-bottom: 1px solid #f0f0f0;
 
       h4 {
-        font-size: 24px;
         line-height: 32px;
+        font-size: 24px;
         color: #000;
       }
     }
@@ -225,9 +225,9 @@ const seeAll = () => {
       text-align: center;
 
       .el-button {
-        width: 200px;
         padding: 0 20px;
         border-radius: 40px;
+        width: 200px;
       }
     }
   }

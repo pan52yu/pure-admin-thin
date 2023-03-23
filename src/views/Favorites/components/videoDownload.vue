@@ -44,13 +44,13 @@ const downloadInput = ref("");
     }
 
     .input_r {
-      color: #fff;
       display: flex;
       align-items: center;
+      color: #fff;
 
       .iconfont {
-        font-size: 14px;
         margin-right: 10px;
+        font-size: 14px;
       }
     }
   }

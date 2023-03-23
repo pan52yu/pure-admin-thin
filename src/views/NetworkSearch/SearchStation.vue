@@ -302,7 +302,7 @@ onMounted(() => {
           <el-button>
             <IconifyIconOffline
               :icon="RefreshRight"
-              style="font-size: 18px; margin-right: 10px"
+              style="margin-right: 10px; font-size: 18px"
             />
             新检索到<span>999</span>条，点击加载
           </el-button>
@@ -343,14 +343,14 @@ onMounted(() => {
 </template>
 <style lang="scss" scoped>
 .station_title {
-  color: #fff;
+  position: relative;
+  padding: 14px 0;
   background: #595959;
-  font-weight: 700;
-  font-size: 24px;
   line-height: 32px;
   text-align: center;
-  padding: 14px 0;
-  position: relative;
+  font-weight: 700;
+  font-size: 24px;
+  color: #fff;
 
   .back {
     position: absolute;
@@ -363,15 +363,15 @@ onMounted(() => {
     }
 
     i {
-      color: #fff;
       margin: 0 10px;
+      color: #fff;
     }
   }
 }
 
 .station_from {
-  background: #f5f5f5;
   padding: 20px 35px;
+  background: #f5f5f5;
   color: #595959;
 
   div {
@@ -385,10 +385,10 @@ onMounted(() => {
     margin-bottom: 5px;
 
     div {
-      width: 25%;
-      font-size: 16px;
       display: flex;
       align-items: center;
+      width: 25%;
+      font-size: 16px;
 
       .el-select,
       .el-input {
@@ -417,17 +417,17 @@ onMounted(() => {
 
     span {
       display: inline-block;
+      margin: 0 5px;
       width: 43px;
       height: 24px;
-      text-align: center;
-      margin: 0 5px;
       cursor: pointer;
+      text-align: center;
     }
 
     .active {
-      color: #fff;
-      background: #1890ff;
       border-radius: 5px;
+      background: #1890ff;
+      color: #fff;
     }
 
     div {
@@ -459,10 +459,10 @@ onMounted(() => {
     padding-left: 70px;
 
     span {
+      margin-left: 20px;
+      cursor: pointer;
       font-size: 14px;
       color: #595959;
-      cursor: pointer;
-      margin-left: 20px;
     }
   }
 
@@ -475,9 +475,9 @@ onMounted(() => {
     }
 
     span {
-      color: #1890ff;
-      cursor: pointer;
       margin-left: 10px;
+      cursor: pointer;
+      color: #1890ff;
     }
 
     .active {
@@ -491,13 +491,13 @@ onMounted(() => {
   background: #fff;
 
   .top_loading {
-    background: #f6ffed;
-    border: 1px solid #b7eb8f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 32px;
     padding: 10px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    border: 1px solid #b7eb8f;
+    background: #f6ffed;
 
     div {
       display: flex;
@@ -508,10 +508,10 @@ onMounted(() => {
       font-size: 14px;
 
       .el-button {
+        border-radius: 30px;
         width: 334px;
         height: 43px;
         background: #1890ff;
-        border-radius: 30px;
         color: #fff;
       }
     }
@@ -520,14 +520,14 @@ onMounted(() => {
       font-size: 14px;
 
       .el-button {
-        color: #fff;
-        padding: 0 7px;
         margin-left: 15px;
+        padding: 0 7px;
+        border-radius: 2px;
         width: 166px;
         height: 22px;
         background: #1890ff;
         box-shadow: 0 2px 0 rgba(0, 0, 0, 0.043);
-        border-radius: 2px;
+        color: #fff;
       }
     }
   }

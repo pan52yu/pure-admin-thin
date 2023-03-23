@@ -158,21 +158,21 @@ const tableData = [
   background: #eef0f3;
 
   h1 {
-    text-align: center;
     margin-bottom: 15px;
+    text-align: center;
   }
 
   ::v-deep(h4) {
-    font-size: 24px;
     line-height: 32px;
     font-weight: 700;
+    font-size: 24px;
   }
 
   .right_detail_user,
   .word_cloud,
   .user_info {
-    background: #fff;
     padding: 40px;
+    background: #fff;
   }
 
   &_two {
@@ -181,9 +181,9 @@ const tableData = [
     margin: 30px 0;
 
     .two_body {
+      padding: 25px 20px;
       width: 32.5%;
       background: #fff;
-      padding: 25px 20px;
 
       .title {
         display: flex;
@@ -196,10 +196,10 @@ const tableData = [
         height: 400px;
 
         .all {
+          margin: 20px 0 0 60px;
+          cursor: pointer;
           font-size: 14px;
           color: #1890ff;
-          cursor: pointer;
-          margin: 20px 0 0 60px;
         }
       }
     }

@@ -199,29 +199,29 @@ onUnmounted(() => {
     }
 
     .time {
-      width: 43px;
-      height: 24px;
       margin-left: 15px;
       padding: 2px;
+      width: 43px;
+      height: 24px;
       cursor: pointer;
 
       &.active {
-        background: #1890ff;
         border-radius: 5px;
+        background: #1890ff;
       }
     }
   }
 
   .right_state {
-    margin: 17px 40px 0 0;
     display: flex;
+    margin: 17px 40px 0 0;
 
     div {
       box-sizing: border-box;
+      margin-left: 3px;
+      border-radius: 50%;
       width: 11px;
       height: 11px;
-      border-radius: 50%;
-      margin-left: 3px;
     }
 
     .dy_state {
@@ -242,11 +242,11 @@ onUnmounted(() => {
   margin: 0 0 5px;
 
   .el-tabs__item {
-    height: 28px;
-    font-size: 14px;
-    line-height: 22px;
-    color: #ffffff;
     padding: 0 15px;
+    height: 28px;
+    line-height: 22px;
+    font-size: 14px;
+    color: #ffffff;
   }
 }
 
@@ -270,16 +270,16 @@ onUnmounted(() => {
 }
 
 ::v-deep(.el-input-group__append) {
-  background: #fa8c16;
-  color: #ffffff;
   padding: 0;
   width: 95px;
   height: 100%;
+  background: #fa8c16;
+  color: #ffffff;
 
   div {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     cursor: pointer;

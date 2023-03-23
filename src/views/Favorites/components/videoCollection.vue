@@ -118,11 +118,11 @@ const shortcuts = [
   }
 
   .label {
-    padding: 5px 0 5px 30px;
-    color: #1890ff;
-    font-size: 20px;
     margin: 5px 0;
+    padding: 5px 0 5px 30px;
     cursor: pointer;
+    font-size: 20px;
+    color: #1890ff;
   }
 }
 </style>

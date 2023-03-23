@@ -34,11 +34,11 @@ import enterOutlined from "@/assets/svg/enter_outlined.svg?component";
   }
 
   .icon {
-    padding: 2px;
     margin-right: 3px;
-    font-size: 20px;
+    padding: 2px;
     box-shadow: inset 0 -2px #cdcde6, inset 0 0 1px 1px #fff,
       0 1px 2px 1px #1e235a66;
+    font-size: 20px;
   }
 }
 </style>

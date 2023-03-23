@@ -139,10 +139,10 @@ const videoDetail = () => {
 
 <style lang="scss" scoped>
 .card_info {
-  width: 100%;
-  color: #8c8c8c;
-  font-size: 14px;
   margin-bottom: 30px;
+  width: 100%;
+  font-size: 14px;
+  color: #8c8c8c;
 
   .card_img {
     width: 100%;
@@ -153,17 +153,17 @@ const videoDetail = () => {
   }
 
   p {
-    color: #000000;
-    margin-top: 10px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    color: #000000;
   }
 
   .card_user {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     font-size: 14px;
 
     div {
@@ -173,10 +173,10 @@ const videoDetail = () => {
   }
 
   .card_detail {
-    font-size: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 12px;
   }
 
   .iconfont {
@@ -191,9 +191,9 @@ const videoDetail = () => {
     margin: 5px 0;
 
     .el-tag {
-      color: #1890ff;
       border: none;
       background: transparent;
+      color: #1890ff;
     }
   }
 
@@ -206,10 +206,10 @@ const videoDetail = () => {
     }
 
     .el-button {
-      border-radius: 5px;
-      color: #fff;
-      background: #d9d9d9;
       border: none;
+      border-radius: 5px;
+      background: #d9d9d9;
+      color: #fff;
     }
 
     .el-button--primary {

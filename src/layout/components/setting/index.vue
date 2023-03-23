@@ -389,7 +389,7 @@ onBeforeMount(() => {
     <el-divider />
     <el-button
       type="danger"
-      style="width: 90%; margin: 24px 15px"
+      style="margin: 24px 15px; width: 90%"
       @click="onReset"
     >
       <IconifyIconOffline
@@ -405,8 +405,8 @@ onBeforeMount(() => {
 
 <style lang="scss" scoped>
 :deep(.el-divider__text) {
-  font-size: 16px;
   font-weight: 700;
+  font-size: 16px;
 }
 
 .is-select {
@@ -425,30 +425,30 @@ onBeforeMount(() => {
 }
 
 .pure-datatheme {
+  display: block;
+  padding-top: 25px;
   width: 100%;
   height: 50px;
   text-align: center;
-  display: block;
-  padding-top: 25px;
 }
 
 .pure-theme {
-  margin-top: 25px;
-  width: 100%;
-  height: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 25px;
+  width: 100%;
+  height: 50px;
 
   li {
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
     width: 18%;
     height: 45px;
     background: #f0f2f5;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    border-radius: 4px;
     box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 18%);
+    cursor: pointer;
 
     &:nth-child(1) {
       div {
@@ -459,13 +459,13 @@ onBeforeMount(() => {
         }
 
         &:nth-child(2) {
+          position: absolute;
+          right: 0;
+          top: 0;
           width: 70%;
           height: 30%;
-          top: 0;
-          right: 0;
           background: #fff;
           box-shadow: 0 0 1px #888;
-          position: absolute;
         }
       }
     }
@@ -491,13 +491,13 @@ onBeforeMount(() => {
         }
 
         &:nth-child(2) {
+          position: absolute;
+          left: 0;
+          bottom: 0;
           width: 30%;
           height: 70%;
-          bottom: 0;
-          left: 0;
           background: #fff;
           box-shadow: 0 0 1px #888;
-          position: absolute;
         }
       }
     }
@@ -505,22 +505,22 @@ onBeforeMount(() => {
 }
 
 .theme-color {
-  width: 100%;
-  height: 40px;
-  margin-top: 20px;
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+  height: 40px;
 
   li {
     float: left;
+    margin-right: 8px;
+    margin-top: 8px;
+    border-radius: 2px;
     width: 20px;
     height: 20px;
-    margin-top: 8px;
-    margin-right: 8px;
-    font-weight: 700;
-    text-align: center;
-    border-radius: 2px;
     cursor: pointer;
+    text-align: center;
+    font-weight: 700;
 
     &:nth-child(2) {
       border: 1px solid #ddd;

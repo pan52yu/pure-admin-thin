@@ -45,10 +45,10 @@ notices.value.map(v => (noticesNum.value += v.list.length));
 <style lang="scss" scoped>
 .dropdown-badge {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 48px;
+  align-items: center;
   width: 60px;
+  height: 48px;
   cursor: pointer;
 
   .header-notice-icon {

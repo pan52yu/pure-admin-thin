@@ -80,10 +80,10 @@ defineProps({
   }
 
   &_map {
+    position: relative;
     width: 100%;
     height: 280px;
     background-color: #f0f0f0;
-    position: relative;
 
     .mask {
       position: absolute;
@@ -91,8 +91,8 @@ defineProps({
       z-index: 1;
       width: 100%;
       height: 100%;
-      color: #d9d9d9;
       background: rgba(217, 217, 217, 0.8);
+      color: #d9d9d9;
     }
   }
 

@@ -65,7 +65,7 @@ const toggleClick = () => {
   bottom: 0;
   width: 100%;
   height: 40px;
-  line-height: 40px;
   box-shadow: 0 0 6px -2px var(--el-color-primary);
+  line-height: 40px;
 }
 </style>

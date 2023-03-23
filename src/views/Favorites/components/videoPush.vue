@@ -34,15 +34,15 @@ const search = () => {
 <style lang="scss" scoped>
 .video_push {
   &_top {
+    margin: 35px 0;
     height: 34px;
     line-height: 34px;
     font-size: 16px;
     color: #595959;
-    margin: 35px 0;
 
     ::v-deep(.el-date-editor) {
-      width: 300px !important;
       margin: 0 20px;
+      width: 300px !important;
     }
   }
 }

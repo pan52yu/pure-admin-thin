@@ -125,8 +125,8 @@ onMounted(() => {
 </template>
 <style lang="scss" scoped>
 .my_map {
-  padding: 0;
   margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
 }

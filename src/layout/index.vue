@@ -181,9 +181,9 @@ const layoutHeader = defineComponent({
 <style lang="scss" scoped>
 @mixin clearfix {
   &::after {
-    content: "";
     display: table;
     clear: both;
+    content: "";
   }
 }
 
@@ -191,8 +191,8 @@ const layoutHeader = defineComponent({
   @include clearfix;
 
   position: relative;
-  height: 100%;
   width: 100%;
+  height: 100%;
 
   &.mobile.openSidebar {
     position: fixed;
@@ -201,13 +201,13 @@ const layoutHeader = defineComponent({
 }
 
 .app-mask {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
   background: #000;
   opacity: 0.3;
-  width: 100%;
-  top: 0;
-  height: 100%;
-  position: absolute;
-  z-index: 999;
 }
 
 .re-screen {

@@ -78,26 +78,26 @@ onMounted(() => {
   position: absolute;
   left: 0;
   top: 35vh;
-  min-width: 50px;
-  font-size: 20px;
-  line-height: 50px;
-  background: #f5f5f5;
   z-index: 997;
+  min-width: 50px;
+  background: #f5f5f5;
+  line-height: 50px;
+  font-size: 20px;
 
   .fav_animation {
     transition: width 3s ease-in-out;
   }
 
   .fav_close {
-    height: 155px;
-    color: #fff;
-    background: #595959;
     display: flex;
-    align-items: center;
     justify-content: center;
-    writing-mode: vertical-rl; /* 竖向从右向左 */
-    text-orientation: upright; /* 保持文字方向正常 */
+    align-items: center;
+    height: 155px;
+    background: #595959;
     cursor: pointer;
+    writing-mode: vertical-rl; /* 竖向从右向左 */
+    color: #fff;
+    text-orientation: upright; /* 保持文字方向正常 */
 
     span {
       margin-top: 20px;
@@ -105,23 +105,23 @@ onMounted(() => {
   }
 
   .fav_open {
-    width: 230px;
-    height: 85vh;
-    transition: all 0.2s ease-in-out;
-    background: #f5f5f5;
+    overflow-y: scroll;
     position: fixed;
     top: 100px;
-    overflow-y: scroll;
+    width: 230px;
+    height: 85vh;
+    background: #f5f5f5;
+    transition: all 0.2s ease-in-out;
 
     &_title {
-      width: 230px;
-      height: 50px;
-      color: #fff;
-      background: #595959;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0 10px;
+      width: 230px;
+      height: 50px;
+      background: #595959;
+      color: #fff;
 
       svg {
         cursor: pointer;
@@ -129,8 +129,8 @@ onMounted(() => {
       }
 
       .center {
-        font-size: 20px;
         font-weight: 700;
+        font-size: 20px;
       }
 
       .all {
@@ -146,10 +146,10 @@ onMounted(() => {
 
       span {
         display: inline-block;
-        font-size: 14px;
         width: 50px;
-        color: #1890ff;
         cursor: pointer;
+        font-size: 14px;
+        color: #1890ff;
       }
     }
 
@@ -160,14 +160,14 @@ onMounted(() => {
         margin-bottom: 16px;
 
         p {
-          height: 20px;
           margin: 0;
+          height: 20px;
         }
 
         .card_user,
         .card_detail {
-          height: 28px;
           margin: 0;
+          height: 28px;
         }
       }
     }

@@ -488,12 +488,12 @@ const fullScreenChange = () => {
   background: #fff;
 
   header {
-    font-size: 30px;
+    padding: 30px 0 0 45px;
+    border-bottom: 1px solid #f0f0f0;
     line-height: 40px;
     font-weight: 700;
+    font-size: 30px;
     color: #1f6bdf;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 30px 0 0 45px;
   }
 
   &_form {
@@ -514,13 +514,13 @@ const fullScreenChange = () => {
     }
 
     .item {
-      margin: 5px 0 25px 120px;
       display: flex;
+      margin: 5px 0 25px 120px;
 
       span {
+        margin-right: 20px;
         width: 170px;
         font-size: 20px;
-        margin-right: 20px;
       }
 
       .el-input {
@@ -532,9 +532,9 @@ const fullScreenChange = () => {
       }
 
       &_l {
-        flex: 1;
         display: flex;
         align-items: center;
+        flex: 1;
 
         .el-input,
         .el-textarea {
@@ -560,9 +560,9 @@ const fullScreenChange = () => {
         }
 
         i {
+          margin-left: 10px;
           font-size: 12px;
           color: #8c8c8c;
-          margin-left: 10px;
         }
 
         .prompt {
@@ -570,14 +570,14 @@ const fullScreenChange = () => {
           color: #8c8c8c;
 
           span {
-            font-size: 12px;
             cursor: pointer;
+            font-size: 12px;
             color: #1890ff;
           }
 
           i {
-            color: red;
             font-weight: 700;
+            color: red;
           }
         }
 
@@ -585,37 +585,37 @@ const fullScreenChange = () => {
           width: 100%;
 
           .ding_content {
-            width: 60%;
-            border: 1px solid #d9d9d9;
             padding: 40px;
+            border: 1px solid #d9d9d9;
+            width: 60%;
 
             p {
-              font-size: 14px;
               margin-top: 10px;
+              font-size: 14px;
             }
 
             .qr_code {
-              font-size: 14px;
-              background: #f0f0f0;
-              color: #595959;
-              width: 230px;
-              height: 230px;
               //  多行文本居中显示
               display: flex;
-              align-items: center;
-              justify-content: center;
               flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 230px;
+              height: 230px;
+              background: #f0f0f0;
+              font-size: 14px;
+              color: #595959;
             }
           }
         }
       }
 
       .add_words {
-        font-size: 14px;
-        font-weight: 700;
-        color: #1890ff;
-        cursor: pointer;
         margin-left: 170px;
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 14px;
+        color: #1890ff;
       }
 
       .match_the_pattern {
@@ -623,8 +623,8 @@ const fullScreenChange = () => {
         align-items: center;
 
         .el-input {
-          font-size: 14px;
           margin: 0;
+          font-size: 14px;
         }
 
         .el-button + .el-button {
@@ -634,17 +634,17 @@ const fullScreenChange = () => {
     }
 
     .form_top {
-      line-height: 32px;
-      border-bottom: 1px solid #f0f0f0;
       margin-top: 50px;
-      padding-bottom: 20px;
       margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #f0f0f0;
+      line-height: 32px;
 
       .title {
         display: flex;
         justify-content: space-between;
-        font-size: 24px;
         font-weight: 700;
+        font-size: 24px;
         color: #000;
 
         span {
@@ -662,11 +662,11 @@ const fullScreenChange = () => {
 
   .coverage {
     span {
-      font-size: 14px;
-      color: #000;
-      border: 1px solid #d9d9d9;
       margin: 1px;
       padding: 2px 10px;
+      border: 1px solid #d9d9d9;
+      font-size: 14px;
+      color: #000;
     }
 
     .active {
@@ -680,16 +680,16 @@ const fullScreenChange = () => {
 
     .el-button {
       position: absolute;
-      top: 50px;
       right: 10px;
+      top: 50px;
       z-index: 3333333;
     }
   }
 
   .full_screen {
     position: fixed;
-    top: 0;
     left: 0;
+    top: 0;
     z-index: 2;
     width: 100vw;
     height: 100vh;

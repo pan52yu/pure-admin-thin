@@ -200,23 +200,23 @@ onMounted(() => {
     margin-bottom: 32px;
 
     .content_img {
+      margin-left: 15px;
       width: 200px;
       height: 250px;
-      margin-left: 15px;
     }
 
     .user_info {
-      font-size: 14px;
       flex: 1;
       margin-left: 20px;
       padding: 10px;
+      font-size: 14px;
 
       &_introduction {
-        margin: 15px 0 !important;
-        overflow: hidden;
-        text-overflow: ellipsis;
         display: -webkit-box;
+        overflow: hidden;
+        margin: 15px 0 !important;
         -webkit-line-clamp: 3;
+        text-overflow: ellipsis;
         -webkit-box-orient: vertical;
       }
 
@@ -225,8 +225,8 @@ onMounted(() => {
 
         span,
         .iconfont {
-          color: #8c8c8c;
           margin-right: 10px;
+          color: #8c8c8c;
         }
       }
 
@@ -240,15 +240,15 @@ onMounted(() => {
     }
 
     .space {
-      background: #d9d9d9;
-      width: 1px;
       margin: 0 20px;
+      width: 1px;
+      background: #d9d9d9;
     }
 
     .video_detail {
-      width: 38%;
-      padding: 25px 10px 10px;
       display: flex;
+      padding: 25px 10px 10px;
+      width: 38%;
       font-size: 14px;
 
       &_l {
@@ -256,18 +256,18 @@ onMounted(() => {
 
         p {
           display: flex;
-          align-items: center;
           justify-content: space-between;
+          align-items: center;
           margin: 4px 0;
 
           span {
+            margin-right: 20px;
             width: 70px;
             color: #8c8c8c;
-            margin-right: 20px;
 
             .iconfont {
-              font-size: 14px;
               margin-left: 5px;
+              font-size: 14px;
               color: #8c8c8c;
             }
           }

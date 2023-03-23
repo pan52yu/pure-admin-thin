@@ -74,10 +74,10 @@ defineOptions({
         width: 580px;
 
         &_title {
-          font-size: 24px;
-          line-height: 32px;
-          color: #000000;
           margin-bottom: 10px;
+          line-height: 32px;
+          font-size: 24px;
+          color: #000000;
         }
 
         table {
@@ -116,14 +116,14 @@ defineOptions({
       }
 
       .content_center {
-        margin: 0 23px;
         flex: 1;
+        margin: 0 23px;
 
         &_title {
-          font-size: 24px;
-          line-height: 32px;
-          color: #000000;
           margin-bottom: 40px;
+          line-height: 32px;
+          font-size: 24px;
+          color: #000000;
         }
 
         &_link {
@@ -132,21 +132,21 @@ defineOptions({
       }
 
       .content_right {
+        padding: 24px 0 24px 57px;
+        border-radius: 5px;
         width: 432px;
 
         background: #e6f7ff;
-        border-radius: 5px;
-        padding: 24px 0 24px 57px;
 
         &_title {
+          line-height: 32px;
           font-weight: 700;
           font-size: 24px;
-          line-height: 32px;
         }
 
         .update_log {
-          font-size: 16px;
           margin: 20px 0;
+          font-size: 16px;
 
           &_title {
             font-weight: 700;

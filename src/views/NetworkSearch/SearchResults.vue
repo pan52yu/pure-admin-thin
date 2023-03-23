@@ -60,7 +60,7 @@ onMounted(() => {});
       <div class="body_r">
         <div class="loading_top">
           <FontIcon
-            style="color: #d9d9d9; margin: 0 14px 0 28px"
+            style="margin: 0 14px 0 28px; color: #d9d9d9"
             icon="icon-duigou"
           />
           正在从已入库视频中检索到&nbsp;
@@ -94,14 +94,14 @@ onMounted(() => {});
 }
 
 .loading_top {
-  width: 656px;
-  height: 62px;
-  line-height: 62px;
-  background: #f6ffed;
-  border: 1px solid #b7eb8f;
   display: flex;
   align-items: center;
   margin-bottom: 18px;
+  border: 1px solid #b7eb8f;
+  width: 656px;
+  height: 62px;
+  background: #f6ffed;
+  line-height: 62px;
 
   span {
     color: #1890ff;
@@ -113,12 +113,12 @@ onMounted(() => {});
   font-size: 14px;
 
   button {
+    border: 1px solid #d9d9d9;
+    border-radius: 30px;
     width: 153px;
     height: 32px;
     background: #ffffff;
-    border: 1px solid #d9d9d9;
     box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.016);
-    border-radius: 30px;
   }
 }
 </style>

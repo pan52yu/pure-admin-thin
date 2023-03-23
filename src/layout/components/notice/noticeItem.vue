@@ -115,8 +115,8 @@ function hoverDescription(event, description) {
 <style scoped lang="scss">
 .notice-container {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
+  align-items: flex-start;
   padding: 12px 0;
   // border-bottom: 1px solid #f0f0f0;
 
@@ -134,17 +134,17 @@ function hoverDescription(event, description) {
     .notice-text-title {
       display: flex;
       margin-bottom: 8px;
+      cursor: pointer;
+      line-height: 1.5715;
       font-weight: 400;
       font-size: 14px;
-      line-height: 1.5715;
-      cursor: pointer;
 
       .notice-title-content {
+        overflow: hidden;
         flex: 1;
         width: 200px;
-        overflow: hidden;
-        white-space: nowrap;
         text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       .notice-title-extra {
@@ -156,15 +156,15 @@ function hoverDescription(event, description) {
 
     .notice-text-description,
     .notice-text-datetime {
-      font-size: 12px;
       line-height: 1.5715;
+      font-size: 12px;
     }
 
     .notice-text-description {
       display: -webkit-box;
-      text-overflow: ellipsis;
       overflow: hidden;
       -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
       -webkit-box-orient: vertical;
     }
 

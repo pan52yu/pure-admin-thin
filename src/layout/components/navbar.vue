@@ -116,31 +116,31 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
 
 <style lang="scss" scoped>
 .navbar {
+  overflow: hidden;
   width: 100%;
   height: 48px;
-  overflow: hidden;
 
   .hamburger-container {
-    line-height: 48px;
-    height: 100%;
     float: left;
+    height: 100%;
     cursor: pointer;
+    line-height: 48px;
   }
 
   .vertical-header-right {
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
     min-width: 280px;
     height: 48px;
-    align-items: center;
     color: #000000d9;
-    justify-content: flex-end;
 
     .el-dropdown-link {
-      height: 48px;
-      padding: 10px;
       display: flex;
-      align-items: center;
       justify-content: space-around;
+      align-items: center;
+      padding: 10px;
+      height: 48px;
       cursor: pointer;
       color: #000000d9;
 
@@ -149,9 +149,9 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
       }
 
       img {
+        border-radius: 50%;
         width: 22px;
         height: 22px;
-        border-radius: 50%;
       }
     }
   }
@@ -182,9 +182,9 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
   max-width: 120px;
 
   ::v-deep(.el-dropdown-menu__item) {
-    min-width: 100%;
     display: inline-flex;
     flex-wrap: wrap;
+    min-width: 100%;
   }
 }
 </style>

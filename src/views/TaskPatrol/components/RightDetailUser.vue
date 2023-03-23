@@ -114,13 +114,13 @@ const timeAcp = ref(true);
 .right_detail_user {
   .title {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 
     span {
-      color: #797373;
-      font-size: 14px;
       cursor: pointer;
+      font-size: 14px;
+      color: #797373;
     }
   }
 
@@ -129,48 +129,48 @@ const timeAcp = ref(true);
   }
 
   .left {
+    margin-top: 25px;
     width: 151px * 1.33;
     text-align: center;
-    margin-top: 25px;
 
     div {
       line-height: 31px * 1.33;
     }
 
     .person {
+      margin: 5px 0 20px 0;
+      border: 1px solid #ffc069;
       height: 31px * 1.33;
       background: #fff7e6;
-      border: 1px solid #ffc069;
       font-size: 14px;
-      margin: 5px 0 20px 0;
     }
 
     .attention {
+      border: 1px solid #1890ff;
+      border-radius: 2px;
       height: 31px * 1.33;
       background: #1890ff;
-      border: 1px solid #1890ff;
       box-shadow: 0 2px 0 rgba(0, 0, 0, 0.043);
-      border-radius: 2px;
       color: #fff;
     }
   }
 
   .center {
-    width: 380px;
     margin: 0 0 0 44px;
+    width: 380px;
 
     div {
       margin-bottom: 5px;
 
       span {
-        color: #8c8c8c;
         display: inline-block;
         width: 100px;
+        color: #8c8c8c;
       }
 
       .is_link {
-        color: #1890ff;
         cursor: pointer;
+        color: #1890ff;
       }
     }
   }
@@ -182,8 +182,8 @@ const timeAcp = ref(true);
       display: flex;
 
       p {
-        color: #8c8c8c;
         margin-right: 10px;
+        color: #8c8c8c;
       }
 
       div {
@@ -191,8 +191,8 @@ const timeAcp = ref(true);
       }
 
       span {
-        color: #1890ff;
         margin-right: 8px;
+        color: #1890ff;
       }
     }
 

@@ -19,24 +19,26 @@ defineOptions({
 
 <style scoped lang="scss">
 .top_banner {
-  width: 100%;
-  height: 214px;
-  color: #ffffff;
-  background: url(@/assets/imgs/right_banner.png) no-repeat right; /* 设置 top_banner 的背景图 */
-  background-size: contain;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
+  height: 214px;
+  background: url(@/assets/imgs/right_banner.png) no-repeat right; /* 设置 top_banner 的背景图 */
+  background-size: contain;
+  color: #ffffff;
+
   .banner_title {
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 40px;
     margin-left: 75px;
     margin-right: 105px;
+    line-height: 40px;
+    font-weight: 700;
+    font-size: 30px;
   }
+
   .center_banner {
-    height: 214px;
     flex: 1;
+    height: 214px;
   }
 }
 

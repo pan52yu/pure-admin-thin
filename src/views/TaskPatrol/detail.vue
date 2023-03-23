@@ -58,27 +58,27 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .task_detail {
-  padding: 20px;
   display: flex;
+  padding: 20px;
   background: #eeeeee;
 
   .left_img {
-    width: 613px;
     margin-right: 45px;
+    width: 613px;
 
     .el-image {
-      width: 100%;
       margin-bottom: 30px;
+      width: 100%;
     }
 
     .gen_user_tro {
-      font-size: 24px;
-      font-weight: 700;
-      height: 90px;
-      background: #0030ad;
-      color: #fff;
       display: flex;
       align-items: center;
+      height: 90px;
+      background: #0030ad;
+      font-weight: 700;
+      font-size: 24px;
+      color: #fff;
 
       img {
         height: 90px;
@@ -98,14 +98,14 @@ onMounted(() => {
     .right_detail_video,
     .right_detail_operation,
     .right_detail_comments {
-      background: #fff;
       padding: 40px;
+      background: #fff;
     }
 
     ::v-deep(h4) {
-      font-size: 24px;
       line-height: 32px;
       font-weight: 700;
+      font-size: 24px;
     }
   }
 }

@@ -330,8 +330,8 @@ const highlightWarningWords = (text: string): string => {
     margin: 15px 0;
 
     .el-tag {
-      background: transparent;
       border: none;
+      background: transparent;
     }
 
     .el-select {
@@ -339,9 +339,9 @@ const highlightWarningWords = (text: string): string => {
     }
 
     p {
+      margin-top: 15px;
       font-size: 14px;
       color: #8c8c8c;
-      margin-top: 15px;
     }
   }
 
@@ -349,12 +349,12 @@ const highlightWarningWords = (text: string): string => {
     margin-bottom: 20px;
 
     span {
+      margin-right: 5px;
+      padding: 5px;
+      border-radius: 5px;
+      background: #ff4d4f;
       font-size: 14px;
       color: #fff;
-      background: #ff4d4f;
-      border-radius: 5px;
-      padding: 5px;
-      margin-right: 5px;
     }
   }
 
@@ -362,8 +362,8 @@ const highlightWarningWords = (text: string): string => {
     margin-top: 5px;
 
     a {
-      color: #1890ff;
       margin-left: 15px;
+      color: #1890ff;
     }
   }
 
@@ -373,10 +373,10 @@ const highlightWarningWords = (text: string): string => {
     margin-bottom: 15px;
 
     &_r {
-      width: 600px;
-      border-left: 1px solid #d9d9d9;
-      padding: 10px 0 0 40px;
       margin-left: 35px;
+      padding: 10px 0 0 40px;
+      border-left: 1px solid #d9d9d9;
+      width: 600px;
 
       span {
         display: inline-block;
@@ -397,8 +397,8 @@ const highlightWarningWords = (text: string): string => {
       }
 
       .iconfont {
-        font-size: 18px;
         margin-left: 5px;
+        font-size: 18px;
       }
     }
   }

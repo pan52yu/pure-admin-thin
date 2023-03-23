@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="wordCloud" ref="wordCloud" style="height: 450px; width: 1160px" />
+    <div id="wordCloud" ref="wordCloud" style="width: 1160px; height: 450px" />
   </div>
 </template>
 <script lang="ts" setup>

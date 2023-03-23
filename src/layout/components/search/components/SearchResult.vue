@@ -83,12 +83,12 @@ function handleTo() {
   &-item {
     display: flex;
     align-items: center;
-    height: 56px;
     margin-top: 8px;
     padding: 14px;
-    border-radius: 4px;
-    cursor: pointer;
     border: 0.1px solid #ccc;
+    border-radius: 4px;
+    height: 56px;
+    cursor: pointer;
     transition: all 0.3s;
 
     &-title {

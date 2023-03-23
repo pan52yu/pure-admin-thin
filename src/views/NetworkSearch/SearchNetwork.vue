@@ -68,7 +68,7 @@ const goSearchNet = () => {
           <el-button>
             <IconifyIconOffline
               :icon="RefreshRight"
-              style="font-size: 18px; margin-right: 10px"
+              style="margin-right: 10px; font-size: 18px"
             />
             最新入库<span>999</span>条，点击加载
           </el-button>
@@ -114,8 +114,8 @@ const goSearchNet = () => {
   }
 
   i {
-    color: #fff;
     margin: 0 10px;
+    color: #fff;
   }
 }
 
@@ -123,13 +123,13 @@ const goSearchNet = () => {
   padding: 25px 30px 220px;
 
   .top_loading {
-    background: #f6ffed;
-    border: 1px solid #b7eb8f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 32px;
     padding: 10px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    border: 1px solid #b7eb8f;
+    background: #f6ffed;
 
     div {
       display: flex;
@@ -140,10 +140,10 @@ const goSearchNet = () => {
       font-size: 14px;
 
       .el-button {
+        border-radius: 30px;
         width: 334px;
         height: 43px;
         background: #1890ff;
-        border-radius: 30px;
         color: #fff;
       }
     }
@@ -152,14 +152,14 @@ const goSearchNet = () => {
       font-size: 14px;
 
       .el-button {
-        color: #fff;
-        padding: 0 7px;
         margin-left: 15px;
+        padding: 0 7px;
+        border-radius: 2px;
         width: 166px;
         height: 22px;
         background: #1890ff;
         box-shadow: 0 2px 0 rgba(0, 0, 0, 0.043);
-        border-radius: 2px;
+        color: #fff;
       }
     }
   }
