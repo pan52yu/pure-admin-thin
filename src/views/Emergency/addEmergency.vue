@@ -118,28 +118,34 @@ const coverRange = ref("1公里");
 const coverRangeList = [
   {
     label: "1公里",
-    value: 1000
+    radius: 1000,
+    zoom: 14
   },
   {
     label: "5公里",
-    value: 5000
+    radius: 5000,
+    zoom: 13
   },
   {
     label: "10公里",
-    value: 10000
+    radius: 10000,
+    zoom: 12
   },
   {
     label: "30公里",
-    value: 30000
+    radius: 30000,
+    zoom: 10
   },
   {
     label: "50公里",
-    value: 50000
+    radius: 50000,
+    zoom: 9
   }
 ];
 const coverRangeChange = val => {
   coverRange.value = val.label;
-  mapForm.value.radius = val.value;
+  mapForm.value.radius = val.radius;
+  mapForm.value.zoom = val.zoom;
 };
 const mapForm = ref({
   zoom: 14,
