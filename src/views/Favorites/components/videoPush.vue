@@ -33,8 +33,6 @@ const search = () => {
 
 <style lang="scss" scoped>
 .video_push {
-  padding: 0 30px 30px;
-
   &_top {
     height: 34px;
     line-height: 34px;

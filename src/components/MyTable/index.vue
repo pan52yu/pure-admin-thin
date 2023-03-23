@@ -95,10 +95,12 @@ const emit = defineEmits(["onload", "updateList"]);
 const props = defineProps({
   tableData: {
     type: Array,
+    required: true,
     default: () => []
   },
   column: {
     type: Array,
+    required: true,
     default: () => []
   },
   checkList: {

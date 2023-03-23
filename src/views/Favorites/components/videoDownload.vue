@@ -31,8 +31,6 @@ const downloadInput = ref("");
 
 <style lang="scss" scoped>
 .video_download {
-  padding: 0 30px 30px;
-
   &_top {
     font-size: 14px;
 
