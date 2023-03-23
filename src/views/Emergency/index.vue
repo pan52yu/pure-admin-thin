@@ -16,7 +16,8 @@ const addEmergency = () => {
 
 // 进行中的突发事件
 const emergencyList = ref<EmergencyType[]>([]);
-
+// 已结束的突发事件
+const emergencyEndList = ref<EmergencyType[]>([]);
 // 获取进行中的突发事件
 const getEmergencyList = () => {
   const getRandomTime = () => {
@@ -44,13 +45,73 @@ const getEmergencyList = () => {
       startTime: start,
       endTime: `${days}天${hours}小时${minutes}分钟`,
       finishTime: finish,
-      status: Math.random() > 0.5
+      status: Math.random() > 0.5,
+      center: [
+        randomInRange(hangzhou.minLng, hangzhou.maxLng),
+        randomInRange(hangzhou.minLat, hangzhou.maxLat)
+      ],
+      zoom: 12,
+      radius: 4000
     });
   }
 };
 
+// 获取已结束的突发事件
+const getEmergencyEndList = () => {
+  const getRandomTime = () => {
+    const year = Math.floor(Math.random() * 2) + 2021;
+    const month = Math.floor(Math.random() * 12) + 1;
+    const day = Math.floor(Math.random() * 28) + 1;
+    const hour = Math.floor(Math.random() * 24);
+    const minute = Math.floor(Math.random() * 60);
+    const second = Math.floor(Math.random() * 60);
+    return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+  };
+  for (let i = 0, len = 6; i < len; i++) {
+    const start = getRandomTime();
+    const finish = getRandomTime();
+    const end = getRandomTime();
+    const diff = new Date(end).getTime() - new Date(start).getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    emergencyEndList.value.push({
+      id: Math.floor(Math.random() * 1000),
+      name: "任务名称" + Math.floor(Math.random() * 100),
+      userNum: Math.floor(Math.random() * 1000),
+      videoNum: Math.floor(Math.random() * 1000),
+      startTime: start,
+      endTime: `${days}天${hours}小时${minutes}分钟`,
+      finishTime: finish,
+      status: Math.random() > 0.5,
+      center: [
+        randomInRange(hangzhou.minLng, hangzhou.maxLng),
+        randomInRange(hangzhou.minLat, hangzhou.maxLat)
+      ],
+      zoom: 12,
+      radius: 4000
+    });
+  }
+};
+const randomInRange = (min, max) => {
+  return Math.random() * (max - min) + min;
+};
+
+const hangzhou = {
+  minLat: 29.424702,
+  maxLat: 30.469746,
+  minLng: 119.155914,
+  maxLng: 120.465054
+};
+
+const lat = randomInRange(hangzhou.minLat, hangzhou.maxLat);
+const lng = randomInRange(hangzhou.minLng, hangzhou.maxLng);
+
+console.log(`随机生成的经纬度为：${lat}, ${lng}`);
+
 onMounted(() => {
   getEmergencyList();
+  getEmergencyEndList();
 });
 // 查看全部
 const seeAll = () => {
@@ -94,7 +155,7 @@ const seeAll = () => {
           <el-col
             class="mb-8"
             :span="8"
-            v-for="item in emergencyList"
+            v-for="item in emergencyEndList"
             :key="item.id"
           >
             <EmergencyItem :item="item" is-end />

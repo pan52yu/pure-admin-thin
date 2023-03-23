@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { EmergencyType } from "@/types/data";
+import MyMap from "@/components/MyMap/index.vue";
 
 defineOptions({
   name: "EmergencyItem"
@@ -20,7 +21,10 @@ defineProps({
 <template>
   <div class="emergency_item">
     <el-card>
-      <div class="emergency_item_map">地图</div>
+      <div class="emergency_item_map">
+        <my-map :id="item.id" :item="item" />
+        <div class="mask" v-if="isEnd" />
+      </div>
       <div class="text-base p-2">
         <div class="flex justify-between items-center mt-4 mb-0.5">
           <h4 class="text-xl">{{ item.name }}</h4>
@@ -79,6 +83,17 @@ defineProps({
     width: 100%;
     height: 280px;
     background-color: #f0f0f0;
+    position: relative;
+
+    .mask {
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      color: #d9d9d9;
+      background: rgba(217, 217, 217, 0.8);
+    }
   }
 
   .item_content {

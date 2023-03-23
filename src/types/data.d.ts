@@ -51,4 +51,10 @@ export type EmergencyType = {
   finishTime?: string;
   // 状态
   status: boolean;
+  //   地图中心点
+  center?: number[];
+  // 地图缩放级别
+  zoom?: number;
+  //   覆盖点半径
+  radius?: number;
 };
