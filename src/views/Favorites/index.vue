@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import VideoCollection from "@/views/Favorites/components/videoCollection.vue";
 import VideoDownload from "@/views/Favorites/components/videoDownload.vue";
+import VideoPush from "@/views/Favorites/components/videoPush.vue";
 
 defineOptions({
   name: "Favorites"
@@ -16,7 +17,9 @@ defineOptions({
       <el-tab-pane label="视频下载">
         <video-download />
       </el-tab-pane>
-      <el-tab-pane label="推送记录">推送记录</el-tab-pane>
+      <el-tab-pane label="推送记录">
+        <video-push />
+      </el-tab-pane>
       <el-tab-pane label="分析报告">分析报告</el-tab-pane>
     </el-tabs>
   </div>
