@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+import MyMap from "@/components/MyMap/index.vue";
 
 defineOptions({
   name: "addEmergency"
@@ -111,6 +112,45 @@ const openChange = () => {
 // 推送到钉钉 ---------------
 // 钉钉手机号
 const dingDingPhone = ref("");
+
+// 覆盖范围
+const coverRange = ref("1公里");
+const coverRangeList = [
+  {
+    label: "1公里",
+    value: 1000
+  },
+  {
+    label: "5公里",
+    value: 5000
+  },
+  {
+    label: "10公里",
+    value: 10000
+  },
+  {
+    label: "30公里",
+    value: 30000
+  },
+  {
+    label: "50公里",
+    value: 50000
+  }
+];
+const coverRangeChange = val => {
+  coverRange.value = val.label;
+  mapForm.value.radius = val.value;
+};
+const mapForm = ref({
+  zoom: 14,
+  center: [120.211503, 30.209629],
+  radius: 1000
+});
+// 全屏设置
+const fullScreen = ref(false);
+const fullScreenChange = () => {
+  fullScreen.value = !fullScreen.value;
+};
 </script>
 
 <template>
@@ -245,16 +285,35 @@ const dingDingPhone = ref("");
       <div class="item">
         <div class="flex-1">
           <div class="flex-bc">
-            <div>覆盖范围: 1公里 5 10 30 50</div>
-            <a class="is_link text-sm" href="javascript:void(0);">全屏设置</a>
+            <div class="coverage">
+              覆盖范围:
+              <span
+                :class="{ active: coverRange === item.label }"
+                @click="coverRangeChange(item)"
+                v-for="item in coverRangeList"
+                :key="item"
+                >{{ item.label }}</span
+              >
+            </div>
+            <a
+              class="is_link text-sm"
+              href="javascript:void(0);"
+              @click="fullScreenChange"
+              >全屏设置</a
+            >
           </div>
-          <div class="map flex-c bg-slate-200 h-96 my-3">地图</div>
+          <div
+            class="map flex-c bg-slate-200 my-3"
+            :class="{ full_screen: fullScreen }"
+          >
+            <my-map :item="mapForm" draggable />
+          </div>
           <p class="text-sm">
             设好范围后移动坐标进行定位，注意：大致估算事件波及范围，区域越小越精准
           </p>
           <p class="text-sm mt-2.5">
             <strong
-              >经度 119.806037:119.998048 维度119.806037:119.998048</strong
+              >经度 {{ mapForm.center[0] }} 维度 {{ mapForm.center[1] }}</strong
             >
           </p>
         </div>
@@ -588,6 +647,34 @@ const dingDingPhone = ref("");
         }
       }
     }
+  }
+
+  .coverage {
+    span {
+      font-size: 14px;
+      color: #000;
+      border: 1px solid #d9d9d9;
+      margin: 1px;
+      padding: 2px 10px;
+    }
+
+    .active {
+      background: #1890ff;
+      color: #fff;
+    }
+  }
+
+  .map {
+    height: 631px;
+  }
+
+  .full_screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
   }
 }
 </style>
