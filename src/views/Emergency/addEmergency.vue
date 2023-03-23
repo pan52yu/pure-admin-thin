@@ -306,7 +306,10 @@ const fullScreenChange = () => {
             class="map flex-c bg-slate-200 my-3"
             :class="{ full_screen: fullScreen }"
           >
-            <my-map :item="mapForm" draggable />
+            <my-map :item="mapForm" draggable editable />
+            <el-button v-show="fullScreen" @click="fullScreenChange"
+              >退出全屏
+            </el-button>
           </div>
           <p class="text-sm">
             设好范围后移动坐标进行定位，注意：大致估算事件波及范围，区域越小越精准
@@ -666,6 +669,13 @@ const fullScreenChange = () => {
 
   .map {
     height: 631px;
+
+    .el-button {
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      z-index: 3333333;
+    }
   }
 
   .full_screen {
