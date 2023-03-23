@@ -1,9 +1,39 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+import FavoritesItem from "@/views/Favorites/components/FavoritesItem.vue";
 
 defineOptions({
   name: "videoCollection"
 });
+// 标签列表
+const labelList = ref([
+  {
+    label: "所有标签",
+    num: 987,
+    id: 1
+  },
+  {
+    label: "标签1",
+    num: 34,
+    id: 2
+  },
+  {
+    label: "标签2",
+    num: 34,
+    id: 3
+  },
+  {
+    label: "标签3",
+    num: 34,
+    id: 4
+  }
+]);
+// 选中的标签
+const activeLabel = ref(1);
+// 点击标签切换高亮
+const changeLabel = (id: number) => {
+  activeLabel.value = id;
+};
 // 收藏时间
 const collectionTime = ref("");
 // 快捷选项 >>> 快速选中时间范围
@@ -46,7 +76,18 @@ const shortcuts = [
         <span class="text-sm is_link">管理</span>
         <span class="text-sm is_link">新建</span>
       </div>
-      <div style="background: red">2</div>
+      <!--   标签   -->
+      <div>
+        <div
+          class="label"
+          :class="{ select_label: activeLabel === item.id }"
+          v-for="item in labelList"
+          :key="item.id"
+          @click="changeLabel(item.id)"
+        >
+          {{ item.label }} <span>{{ item.num }}</span>
+        </div>
+      </div>
     </div>
     <div class="flex-1 pl-6">
       <div class="mb-8">
@@ -62,13 +103,26 @@ const shortcuts = [
         />
         <el-button size="small" type="primary">查询</el-button>
       </div>
-      <div>待封装</div>
+      <div>
+        <favorites-item />
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .videoCollection {
-  border-right: 1px solid #d9d9d9;
+  .select_label {
+    background: #1890ff;
+    color: #ffffff !important;
+  }
+
+  .label {
+    padding: 5px 0 5px 30px;
+    color: #1890ff;
+    font-size: 20px;
+    margin: 5px 0;
+    cursor: pointer;
+  }
 }
 </style>
